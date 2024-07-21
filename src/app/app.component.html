@@ -1,0 +1,9 @@
+<main id="main-page-container">
+  <span id="header-container">
+    <h1 (click)="activate = true">
+      JLAV.IO
+    </h1>
+  </span>
+  <app-grid [activate]="activate"></app-grid>
+</main>
+<router-outlet />
