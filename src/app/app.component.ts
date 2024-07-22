@@ -12,4 +12,9 @@ import { GridComponent } from './components/grid/grid.component';
 export class AppComponent {
   title = 'jlav.io';
   activate: boolean = false;
+
+  initiate() {
+    this.activate = true;
+    // TODO: add classes for animations
+  }
 }

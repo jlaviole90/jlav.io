@@ -1,4 +1,3 @@
-
 #grid-container {
   height: 99.8vh;
   width: 99.9vw;
@@ -7,10 +6,4 @@
   flex-direction: row;
 
   transform: perspective(350px) rotateX(53deg);
-
-  .grid-box {
-    height: 4.5vw;
-    width: 4.5vw;
-    border: solid white 1px;
-  }
 }
