@@ -1,19 +1,10 @@
 import { AfterContentInit, Component, Input, Renderer2, RendererFactory2 } from '@angular/core';
 
 @Component({
-  selector: 'app-grid',
-  standalone: true,
-  imports: [],
-  templateUrl: './grid.component.html',
-  styleUrl: './grid.component.scss',
-  /*
-  animations: [
-    trigger(
-      state(),
-      transition(),
-    ),
-  ]
-  */
+    selector: 'app-grid',
+    imports: [],
+    templateUrl: './grid.component.html',
+    styleUrl: './grid.component.scss'
 })
 export class GridComponent implements AfterContentInit {
 
