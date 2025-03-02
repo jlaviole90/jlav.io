@@ -6,14 +6,8 @@ import { GridComponent } from './components/grid/grid.component';
     selector: 'app-root',
     imports: [RouterOutlet, GridComponent],
     templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+    styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'jlav.io';
-  activate: boolean = false;
-
-  initiate() {
-    this.activate = true;
-    // TODO: add classes for animations
-  }
+    title = 'jlav.io';
 }

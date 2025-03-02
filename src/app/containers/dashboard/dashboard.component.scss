@@ -1,0 +1,46 @@
+#dashboard-container {
+    height: 100vh;
+    margin: 50px;
+    font-size: 2rem;
+    color: #9299B4;
+
+    .keyword {
+        color: #D2A4FD;
+    }
+
+    .func {
+        color: #7DB6FF;
+    }
+
+    .string {
+        color: #94E59A
+    }
+
+    .var {
+        color: white;
+    }
+
+    .identifier {
+        color: #B2BEFF;
+    }
+
+    .type {
+        color: #FEE1A8;
+    }
+
+    .const {
+        color: #FFAF7F;
+    }
+}
+
+a {
+    color: #9299B4;
+    text-decoration: none;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.click {
+    cursor: pointer;
+}

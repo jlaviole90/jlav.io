@@ -1,9 +1,10 @@
 #grid-container {
-  height: 99.8vh;
-  width: 99.9vw;
+    display: grid;
+    grid-template-columns: repeat(22, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-gap: 0px;
+    cursor: pointer;
 
-  display: flex;
-  flex-direction: row;
-
-  transform: perspective(350px) rotateX(53deg);
+    transform: perspective(350px) rotateX(50deg);
 }
+

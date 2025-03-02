@@ -1,0 +1,101 @@
+<div id="dashboard-container">
+    <div>
+        <span class="keyword">package </span
+        ><span class="identifier">dashboard</span>
+    </div>
+    <br />
+    <div>
+        <div>
+            <span class="keyword">const</span> (
+            <div id="const-container">
+                <div>
+                    <span
+                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                            [href]="githubLink"
+                            class="const"
+                            >GitHub_URL
+                        </a>
+                        <span class="type">&nbsp;&nbsp;string </span>=
+                        <a [href]="githubLink" class="string"
+                            >"{{ githubLink }}"</a
+                        ></span
+                    >
+                </div>
+                <div>
+                    <span
+                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
+                            [href]="linkedinLink"
+                            class="const"
+                            >LinkedIn_URL
+                        </a>
+                        <span class="type">string </span>=
+                        <a [href]="linkedinLink" class="string"
+                            >"{{ linkedinLink }}"</a
+                        ></span
+                    >
+                </div>
+            </div>
+            )
+        </div>
+    </div>
+    <br />
+    <div>
+        <div>
+            <span class="keyword">func </span>(<span class="var">w </span>*<span
+                class="type"
+                >Website</span
+            >) <span class="func">Navigate</span>() (*<span class="type"
+                >WebPage</span
+            >) &#123;
+        </div>
+        <div id="body-container">
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span
+                    (mouseenter)="hoveredVar = 'projects'"
+                    (mouseleave)="hoveredVar = 'nil'"
+                    (click)="navigate('/' + hoveredVar)"
+                    class="var click"
+                    >projects</span
+                >
+                := <span class="var">w</span>.<span
+                    (click)="navigate('/' + hoveredVar)"
+                    (mouseenter)="hoveredVar = 'projects'"
+                    (mouseleave)="hoveredVar = 'nil'"
+                    class="identifier click"
+                    >Projects</span
+                >
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span
+                    (mouseenter)="hoveredVar = 'resume'"
+                    (mouseleave)="hoveredVar = 'nil'"
+                    (click)="navigate('/' + hoveredVar)"
+                    class="var click"
+                    >resume</span
+                >
+                := <span class="var">w</span>.<span
+                    (click)="navigate('/' + hoveredVar)"
+                    (mouseenter)="hoveredVar = 'resume'"
+                    (mouseleave)="hoveredVar = 'nil'"
+                    class="identifier click"
+                    >Resume</span
+                >
+            </div>
+            <br />
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span class="keyword">return </span><span class="var"></span
+                ><span
+                    [ngClass]="{
+                        const: hoveredVar === 'nil',
+                        var: hoveredVar !== 'nil',
+                    }"
+                    >{{ hoveredVar }}</span
+                >
+            </div>
+            <div>&#125;</div>
+        </div>
+    </div>
+</div>

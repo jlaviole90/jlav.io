@@ -1,29 +1,49 @@
 /* You can add global styles to this file, and also import other style files */
 * {
-  font-family: "Source Code Pro", monospace;
+    font-family: "Source Code Pro", monospace;
 }
 
 html,
 main,
 body {
-  height: 100vh;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #222847;
 }
 
+.grid-box-box,
 .grid-box {
-  height: 4.5vw;
-  width: 4.5vw;
+    height: 4.5vw;
+    width: 4.5vw;
 }
+
+.grid-box:hover {
+    outline: solid #94E59A 3px;
+}
+
+.grid-box:hover~div {
+    outline: solid red 2px;
+}
+
+/*
+.box-col:has(.grid-box:hover)>.grid-box:not(:hover) {
+    outline: solid red 1px;
+}*/
 
 .grid-box-transition {
-  outline: solid white 1px;
-  animation: boxIn 1.5s linear;
+    outline: solid white 1px;
+    animation: boxIn 1.5s linear;
 }
 
 @keyframes boxIn {
-  0% { outline: solid transparent 1px; }
-  100% { outline: solid white 1px; }
+    0% {
+        outline: solid transparent 1px;
+    }
+
+    100% {
+        outline: solid white 1px;
+    }
 }
