@@ -31,6 +31,11 @@
     .const {
         color: #FFAF7F;
     }
+
+    .line {
+        display: flex;
+        outline: solid red 1px;
+    }
 }
 
 a {
@@ -43,4 +48,14 @@ a {
 
 .click {
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #dashboard-container {
+        font-size: 1rem !important;
+    }
+}
+
+.fourOnePxHgt {
+    height: 41px !important;
 }

@@ -63,7 +63,7 @@ export class GridComponent implements AfterContentInit {
             this.boxTranslate.forEach((box) => {
                 box.play();
             });
-            setTimeout(() => this.router.navigate(['/dashboard']), 5000);
+            setTimeout(() => this.router.navigate(['/dashboard']), 4000);
         }
     }
 

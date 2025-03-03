@@ -8,3 +8,11 @@
     transform: perspective(350px) rotateX(50deg);
 }
 
+@media (max-width: 768px) {
+    #grid-container {
+        position: absolute;
+        bottom: 40%;
+    }
+
+}
+
