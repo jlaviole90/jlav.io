@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { TypewriterService } from '../../services/typewriter.service';
 
 @Component({
@@ -18,8 +18,6 @@ export class DashboardComponent implements OnInit {
 
     tokenContainer: HTMLCollectionOf<Element>;
 
-    globalIdx: number = 0;
-
     tokens$: Observable<string>[] = [];
 
     private typewriter: TypewriterService = inject(TypewriterService);
@@ -31,17 +29,19 @@ export class DashboardComponent implements OnInit {
         this.type(0);
     }
 
-    public get idx(): number {
-        return this.globalIdx++;
-    }
-
-    public igi(): void {
-        this.globalIdx += 1;
-    }
-
     public navigate(path: string): void {
         console.log(path);
         this.router.navigate([path]);
+    }
+
+    public tokenize(val: string): void {
+        this.tokens$[39] = of(val);
+        this.tokens$[39].subscribe((text) => {
+            if (text.length === val.length) {
+                document.getElementById('return-val')!.innerHTML = val;
+                this.hoveredVar = val;
+            }
+        });
     }
 
     // Is this as awful as I think it is?
@@ -52,13 +52,20 @@ export class DashboardComponent implements OnInit {
 
         let el = this.tokenContainer[x];
         if (!el) return;
-        this.tokens$[x] = this.typewriter.type(cntnt, 20);
+        this.tokens$[x] = this.typewriter.type(cntnt, 10);
         this.tokens$[x].subscribe((text) => {
             if (text.length === cntnt.length) {
                 el.innerHTML = text;
                 this.type(x + 1);
             }
         });
+
+        if (x === 39) {
+            this.tokens$[39].subscribe((text) => {
+                document.getElementById('return-val')!.innerHTML =
+                    this.hoveredVar;
+            });
+        }
     }
 }
 
