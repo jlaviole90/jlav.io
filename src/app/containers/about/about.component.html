@@ -7,20 +7,32 @@
             animations. I figure keeping it (in all its flaws) and using it as a
             resume and portfolio site is better than not having one at all.
         </p>
-        <ul>
-            <li>
-                The landing page uses a mix of both CSS keyframes and Angular
-                animations.
-            </li>
-            <li>
-                The dashboard page is actually 'animated' entirely with
-                observables.
-            </li>
-            <li>
-                This page is as barebones as possible. Oldschool, reminiscent of
-                a better internet.
-            </li>
-        </ul>
+        <h3>Landing Page</h3>
+        <p>
+            The landing page waas made up of a mix of CSS keyframes and Angular
+            animations. Every square (grid-box) in the grid is given 3 random
+            spin velocities in each axis, and a random translation velocity is
+            applied to each of their parent containers (grid-box-box). If the
+            translation is applied to the grid-box elements (as opposed to
+            grid-box-box), the translation will animate in relation to the
+            rotation of the element.
+        </p>
+        <h3>Dashboard</h3>
+        <p>
+            The dashboard page is actually 'animated' entirely with observables.
+            The page content is broken up into tokens, which I first started
+            doing only as a means to formatting it as code. These tokens are
+            each cast into an observable wrapper, and through an injected
+            service each character is appended to the inner string. Upon
+            completion, the string is then set as the permanent innerHTML of
+            each parent element, and recursively calls the next word to be
+            built.
+        </p>
+        <h3>About</h3>
+        <p>
+            This page is intentionally as barebones as possible. Oldschool,
+            reminiscent of a better internet.
+        </p>
     </div>
     <div id="about-me" class="section">
         <h1>About Me</h1>

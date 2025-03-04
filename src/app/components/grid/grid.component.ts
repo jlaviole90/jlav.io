@@ -79,11 +79,6 @@ export class GridComponent implements AfterContentInit {
                 let v1 = Math.random() * 10;
                 let v2 = Math.random() * 10;
                 let v3 = Math.random() * 10;
-                let cV1 =
-                    i < 11 ? Math.random() * -10000 : Math.random() * 10000;
-                let cV2 = Math.random() * -10000;
-                let x = 0;
-                let y = 0;
                 let dXv = 50;
                 let dYv = 0;
                 let dZv = 0;
@@ -144,7 +139,7 @@ export class GridComponent implements AfterContentInit {
                                 '5s',
                                 keyframes([
                                     style({
-                                        transform: `translate3d(${cV1}px, ${cV2}px, ${0}px)`,
+                                        transform: `translate3d(${i < 11 ? Math.random() * -10000 : Math.random() * 10000}px, ${Math.random() * -10000}px, ${0}px)`,
                                         opacity: 0
                                     }),
                                 ]),
