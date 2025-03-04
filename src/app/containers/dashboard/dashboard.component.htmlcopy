@@ -1,13 +1,13 @@
 <div id="dashboard-container">
     <div>
-        <span id="a" class="keyword">{{ text$[0] | async }}</span>
-        <span id="b" class="identifier">{{ text$[1] | async }}</span>
+        <span id="a" class="keyword">package&nbsp;</span>
+        <span id="b" class="identifier">dashboard</span>
     </div>
     <br />
     <div>
         <div>
-            <span id="c" class="keyword">{{ text$[2] | async }}</span>
-            <span id="d">{{ text$[3] | async }}</span>
+            <span id="c" class="keyword">const</span>
+            <span id="d"> (</span>
             <div id="const-container">
                 <div>
                     <span
@@ -15,12 +15,12 @@
                             id="e"
                             [href]="githubLink"
                             class="const"
-                        >{{ text$[4] | async }}
-                        </a><span>&nbsp;</span>
-                        <span id="f" class="type">{{ text$[5] | async }}</span>
-                        <span id="g">{{ text$[6] | async }}</span>
+                            >GitHub_URL
+                        </a>
+                        <span id="f" class="type">&nbsp;&nbsp;string&nbsp;</span>
+                        <span id="g">=</span>
                         <a id="h" [href]="githubLink" class="string"
-                        >{{ text$[7] | async }}</a
+                            >"{{ githubLink }}"</a
                         ></span
                     >
                 </div>
@@ -30,36 +30,36 @@
                             id="i"
                             [href]="linkedinLink"
                             class="const"
-                        >{{ text$[8] | async }}
+                            >LinkedIn_URL
                         </a>
-                        <span id="j" class="type">{{ text$[9] | async }}</span>
-                        <span id="k">{{ text$[10] | async }}</span>
+                        <span id="j" class="type">string </span>
+                        <span id="k">=</span>
                         <a id="l" [href]="linkedinLink" class="string"
-                        >{{ text$[11] | async }}</a
+                            >"{{ linkedinLink }}"</a
                         ></span
                     >
                 </div>
             </div>
-            <span id="m">{{ text$[12] | async }}</span>
+            <span id="m">)</span>
         </div>
     </div>
     <br />
     <div>
         <div>
-            <span id="n" class="keyword">{{ text$[13] | async }}</span>
-            <span id="o">{{ text$[14] | async }}</span>
-            <span id="p" class="var">{{ text$[15] | async }}</span>
-            <span id="q">{{ text$[16] | async }}</span>
+            <span id="n" class="keyword">func </span>
+            <span id="o">(</span>
+            <span id="p" class="var">w </span>
+            <span id="q">*</span>
             <span
                 id="r"
                 class="type"
-            >{{ text$[17] | async }}</span
-            ><span id="s">{{ text$[18] | async }}</span>
-            <span id="t" class="func">{{ text$[19] | async }}</span>
-            <span id="u">{{ text$[20] | async }}</span>
-            <span id="v" class="type">{{ text$[21] | async }}</span
+                >Website</span
+            ><span id="s">)&nbsp;</span>
+            <span id="t" class="func">Navigate</span>
+            <span id="u">()&nbsp;(*</span>
+            <span id="v" class="type">WebPage</span
             >
-            <span id="w">{{ text$[22] | async }}</span>
+            <span id="w">) &#123;</span>
         </div>
         <div id="body-container">
             <div>
@@ -70,18 +70,18 @@
                     (mouseleave)="hoveredVar = 'nil'"
                     (click)="navigate('/' + hoveredVar)"
                     class="var click"
-                >{{ text$[23] | async }}</span
+                    >projects</span
                 >
-                <span id="y">{{ text$[24] | async }}</span>
-                <span id="z" class="var">{{ text$[25] | async }}</span>
-                <span id="aa">{{ text$[26] | async }}</span>
+                <span id="y">:=&nbsp;</span>
+                <span id="z" class="var">w</span>
+                <span id="aa">.</span>
                 <span
                     id="ab"
                     (click)="navigate('/' + hoveredVar)"
                     (mouseenter)="hoveredVar = 'projects'"
                     (mouseleave)="hoveredVar = 'nil'"
                     class="identifier click"
-                >{{ text$[27] | async }}</span
+                    >Projects</span
                 >
             </div>
             <div>
@@ -92,34 +92,34 @@
                     (mouseleave)="hoveredVar = 'nil'"
                     (click)="navigate('/' + hoveredVar)"
                     class="var click"
-                >{{ text$[28] | async }}</span
+                    >resume</span
                 >
-                <span id="ad">{{ text$[29] | async }}</span>
-                <span id="ae" class="var">{{ text$[30] | async }}</span>
-                <span id="af">{{ text$[31] | async }}</span>
+                <span id="ad">:=&nbsp;</span>
+                <span id="ae" class="var">w</span>
+                <span id="af">.</span>
                 <span
                     id="ag"
                     (click)="navigate('/' + hoveredVar)"
                     (mouseenter)="hoveredVar = 'resume'"
                     (mouseleave)="hoveredVar = 'nil'"
                     class="identifier click"
-                >{{ text$[32] | async }}</span
+                    >Resume</span
                 >
             </div>
             <br />
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <span id="ah" class="keyword">{{ text$[33] | async }}</span>
+                <span id="ah" class="keyword">return&nbsp;</span>
                 <span
                     id="ai"
                     [ngClass]="{
                         const: hoveredVar === 'nil',
                         var: hoveredVar !== 'nil',
                     }"
-                >{{ text$[34] | async }}</span
+                    >{{ hoveredVar }}</span
                 >
             </div>
-            <div id="aj">{{ text$[35] | async }}</div>
+            <div id="aj">&#125;</div>
         </div>
     </div>
 </div>
