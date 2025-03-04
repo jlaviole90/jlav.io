@@ -35,13 +35,8 @@ export class DashboardComponent implements OnInit {
     }
 
     public tokenize(val: string): void {
-        this.tokens$[39] = of(val);
-        this.tokens$[39].subscribe((text) => {
-            if (text.length === val.length) {
-                document.getElementById('return-val')!.innerHTML = val;
-                this.hoveredVar = val;
-            }
-        });
+        this.tokens$[39] = this.typewriter.type(val, 50);
+        this.hoveredVar = val;
     }
 
     // Is this as awful as I think it is?
@@ -55,17 +50,10 @@ export class DashboardComponent implements OnInit {
         this.tokens$[x] = this.typewriter.type(cntnt, 10);
         this.tokens$[x].subscribe((text) => {
             if (text.length === cntnt.length) {
-                el.innerHTML = text;
+                //el.innerHTML = text;
                 this.type(x + 1);
             }
         });
-
-        if (x === 39) {
-            this.tokens$[39].subscribe((text) => {
-                document.getElementById('return-val')!.innerHTML =
-                    this.hoveredVar;
-            });
-        }
     }
 }
 
