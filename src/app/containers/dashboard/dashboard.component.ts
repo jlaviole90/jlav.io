@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { TypewriterService } from '../../services/typewriter.service';
-import { from, Observable, of, tap } from 'rxjs';
 
 @Component({
     selector: 'app-dashboard',
@@ -16,77 +16,51 @@ export class DashboardComponent implements OnInit {
 
     hoveredVar: string = 'nil';
 
-    text$: Observable<string>[] = [];
+    tokenContainer: HTMLCollectionOf<Element>;
+
+    globalIdx: number = 0;
+
+    tokens$: Observable<string>[] = [];
 
     private typewriter: TypewriterService = inject(TypewriterService);
 
     constructor(private router: Router) {}
 
     ngOnInit(): void {
+        this.tokenContainer = document.getElementsByClassName('token');
         this.type(0);
     }
 
-    public navigate(path: string) {
+    public get idx(): number {
+        return this.globalIdx++;
+    }
+
+    public igi(): void {
+        this.globalIdx += 1;
+    }
+
+    public navigate(path: string): void {
         console.log(path);
         this.router.navigate([path]);
     }
 
     // Is this as awful as I think it is?
-    private type(idx: number) {
-        let cntnt = TEMPLATE_CONTENT[idx];
+    private type(x: number) {
+        let cntnt = TEMPLATE_CONTENT[x];
         if (cntnt === '\"{{ githubLink }}\"') cntnt = this.githubLink;
         else if (cntnt === '\"{{ linkedinLink }}\"') cntnt = this.linkedinLink;
 
-        let el = document.getElementById(TEMPLATE_IDS[idx]);
+        let el = this.tokenContainer[x];
         if (!el) return;
-        this.text$[idx] = this.typewriter.typeEffect(cntnt);
-        this.text$[idx].subscribe((text) => {
+        this.tokens$[x] = this.typewriter.type(cntnt, 20);
+        this.tokens$[x].subscribe((text) => {
             if (text.length === cntnt.length) {
                 el.innerHTML = text;
-                this.type(idx + 1);
+                this.type(x + 1);
             }
         });
     }
 }
-
-const TEMPLATE_IDS: string[] = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-    'aa',
-    'ab',
-    'ac',
-    'ad',
-    'ae',
-    'af',
-    'ag',
-    'ah',
-    'ai',
-    'aj',
-];
 
 const TEMPLATE_CONTENT: string[] = [
     'package ',
@@ -112,6 +86,11 @@ const TEMPLATE_CONTENT: string[] = [
     '() (*',
     'WebPage',
     ') {',
+    'about ',
+    ':= ',
+    'w',
+    '.',
+    'About',
     'projects ',
     ':= ',
     'w',

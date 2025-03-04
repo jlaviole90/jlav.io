@@ -1,125 +1,139 @@
 <div id="dashboard-container">
     <div>
-        <span id="a" class="keyword">{{ text$[0] | async }}</span>
-        <span id="b" class="identifier">{{ text$[1] | async }}</span>
+        <span class="keyword token">{{ tokens$[0] | async }}</span>
+        <span class="identifier token">{{ tokens$[1] | async }}</span>
     </div>
     <br />
     <div>
         <div>
-            <span id="c" class="keyword">{{ text$[2] | async }}</span>
-            <span id="d">{{ text$[3] | async }}</span>
+            <span class="keyword token">{{ tokens$[2] | async }}</span>
+            <span class="token">{{ tokens$[3] | async }}</span>
             <div id="const-container">
                 <div>
                     <span
                         >&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            id="e"
                             [href]="githubLink"
-                            class="const"
-                        >{{ text$[4] | async }}
+                            class="const token"
+                        >{{ tokens$[4] | async }}
                         </a><span>&nbsp;</span>
-                        <span id="f" class="type">{{ text$[5] | async }}</span>
-                        <span id="g">{{ text$[6] | async }}</span>
-                        <a id="h" [href]="githubLink" class="string"
-                        >{{ text$[7] | async }}</a
+                        <span class="type token">{{ tokens$[5] | async }}</span>
+                        <span class="token">{{ tokens$[6] | async }}</span>
+                        <a [href]="githubLink" class="string token"
+                        >{{ tokens$[7] | async }}</a
                         ></span
                     >
                 </div>
                 <div>
                     <span
                         >&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            id="i"
                             [href]="linkedinLink"
-                            class="const"
-                        >{{ text$[8] | async }}
+                            class="const token"
+                        >{{ tokens$[8] | async }}
                         </a>
-                        <span id="j" class="type">{{ text$[9] | async }}</span>
-                        <span id="k">{{ text$[10] | async }}</span>
-                        <a id="l" [href]="linkedinLink" class="string"
-                        >{{ text$[11] | async }}</a
+                        <span class="type token">{{ tokens$[9] | async }}</span>
+                        <span class="token">{{ tokens$[10] | async }}</span>
+                        <a [href]="linkedinLink" class="string token"
+                        >{{ tokens$[11] | async }}</a
                         ></span
                     >
                 </div>
             </div>
-            <span id="m">{{ text$[12] | async }}</span>
+            <span class="token">{{ tokens$[12] | async }}</span>
         </div>
     </div>
     <br />
     <div>
         <div>
-            <span id="n" class="keyword">{{ text$[13] | async }}</span>
-            <span id="o">{{ text$[14] | async }}</span>
-            <span id="p" class="var">{{ text$[15] | async }}</span>
-            <span id="q">{{ text$[16] | async }}</span>
+            <span class="keyword token">{{ tokens$[13] | async }}</span>
+            <span class="token">{{ tokens$[14] | async }}</span>
+            <span class="var token">{{ tokens$[15] | async }}</span>
+            <span class="token">{{ tokens$[16] | async }}</span>
             <span
                 id="r"
-                class="type"
-            >{{ text$[17] | async }}</span
-            ><span id="s">{{ text$[18] | async }}</span>
-            <span id="t" class="func">{{ text$[19] | async }}</span>
-            <span id="u">{{ text$[20] | async }}</span>
-            <span id="v" class="type">{{ text$[21] | async }}</span
+                class="type token"
+            >{{ tokens$[17] | async }}</span
+            ><span class="token">{{ tokens$[18] | async }}</span>
+            <span class="func token">{{ tokens$[19] | async }}</span>
+            <span class="token">{{ tokens$[20] | async }}</span>
+            <span class="type token">{{ tokens$[21] | async }}</span
             >
-            <span id="w">{{ text$[22] | async }}</span>
+            <span class="token">{{ tokens$[22] | async }}</span>
         </div>
         <div id="body-container">
-            <div>
+            <div class="nav-container">
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <span
-                    id="x"
-                    (mouseenter)="hoveredVar = 'projects'"
+                    (mouseenter)="hoveredVar = 'about'"
                     (mouseleave)="hoveredVar = 'nil'"
                     (click)="navigate('/' + hoveredVar)"
-                    class="var click"
-                >{{ text$[23] | async }}</span
+                    class="var click token"
+                >{{ tokens$[23] | async }}</span
                 >
-                <span id="y">{{ text$[24] | async }}</span>
-                <span id="z" class="var">{{ text$[25] | async }}</span>
-                <span id="aa">{{ text$[26] | async }}</span>
+                <span class="token">{{ tokens$[24] | async }}</span>
+                <span class="var token">{{ tokens$[25] | async }}</span>
+                <span class="token">{{ tokens$[26] | async }}</span>
                 <span
-                    id="ab"
                     (click)="navigate('/' + hoveredVar)"
                     (mouseenter)="hoveredVar = 'projects'"
                     (mouseleave)="hoveredVar = 'nil'"
-                    class="identifier click"
-                >{{ text$[27] | async }}</span
+                    class="identifier click token"
+                >{{ tokens$[27] | async }}</span
                 >
             </div>
-            <div>
+            <div class="nav-container">
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <span
-                    id="ac"
-                    (mouseenter)="hoveredVar = 'resume'"
+                    (mouseenter)="hoveredVar = 'projects'"
                     (mouseleave)="hoveredVar = 'nil'"
                     (click)="navigate('/' + hoveredVar)"
-                    class="var click"
-                >{{ text$[28] | async }}</span
+                    class="var click token"
+                >{{ tokens$[28] | async }}</span
                 >
-                <span id="ad">{{ text$[29] | async }}</span>
-                <span id="ae" class="var">{{ text$[30] | async }}</span>
-                <span id="af">{{ text$[31] | async }}</span>
+                <span class="token">{{ tokens$[29] | async }}</span>
+                <span class="var token">{{ tokens$[30] | async }}</span>
+                <span class="token">{{ tokens$[31] | async }}</span>
                 <span
-                    id="ag"
                     (click)="navigate('/' + hoveredVar)"
                     (mouseenter)="hoveredVar = 'resume'"
                     (mouseleave)="hoveredVar = 'nil'"
-                    class="identifier click"
-                >{{ text$[32] | async }}</span
+                    class="identifier click token"
+                >{{ tokens$[32] | async }}</span
+                >
+            </div>
+            <div class="nav-container">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span
+                    (mouseenter)="hoveredVar = 'resume'"
+                    (mouseleave)="hoveredVar = 'nil'"
+                    (click)="navigate('/' + hoveredVar)"
+                    class="var click token"
+                >{{ tokens$[33] | async }}</span
+                >
+                <span class="token">{{ tokens$[34] | async }}</span>
+                <span class="var token">{{ tokens$[35] | async }}</span>
+                <span class="token">{{ tokens$[36] | async }}</span>
+                <span
+                    (click)="navigate('/' + hoveredVar)"
+                    (mouseenter)="hoveredVar = 'resume'"
+                    (mouseleave)="hoveredVar = 'nil'"
+                    class="identifier click token"
+                >{{ tokens$[37] | async }}</span
                 >
             </div>
             <br />
             <div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <span id="ah" class="keyword">{{ text$[33] | async }}</span>
+                <span class="keyword token">{{ tokens$[38] | async }}</span>
                 <span
-                    id="ai"
                     [ngClass]="{
                         const: hoveredVar === 'nil',
                         var: hoveredVar !== 'nil',
                     }"
-                >{{ text$[34] | async }}</span
+                    class="token"
+                >{{ tokens$[39] | async }}</span
                 >
             </div>
-            <div id="aj">{{ text$[35] | async }}</div>
+            <div class="token">{{ tokens$[40] | async }}</div>
         </div>
     </div>
 </div>
