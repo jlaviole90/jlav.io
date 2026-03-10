@@ -1,136 +1,46 @@
-<div id="dashboard-container">
-    <div>
-        <span class="keyword token">{{ tokens$[0] | async }}</span>
-        <span class="identifier token">{{ tokens$[1] | async }}</span>
-    </div>
-    <br />
-    <div>
-        <div>
-            <span class="keyword token">{{ tokens$[2] | async }}</span>
-            <span class="token">{{ tokens$[3] | async }}</span>
-            <div id="const-container">
-                <div>
-                    <span
-                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            [href]="githubLink"
-                            class="const token"
-                            >{{ tokens$[4] | async }} </a
-                        ><span>&nbsp;</span>
-                        <span class="type token">{{ tokens$[5] | async }}</span>
-                        <span class="token">{{ tokens$[6] | async }}</span>
-                        <a [href]="githubLink" class="string token">{{
-                            tokens$[7] | async
-                        }}</a></span
-                    >
-                </div>
-                <div>
-                    <span
-                        >&nbsp;&nbsp;&nbsp;&nbsp;<a
-                            [href]="linkedinLink"
-                            class="const token"
-                            >{{ tokens$[8] | async }}
-                        </a>
-                        <span class="type token">{{ tokens$[9] | async }}</span>
-                        <span class="token">{{ tokens$[10] | async }}</span>
-                        <a [href]="linkedinLink" class="string token">{{
-                            tokens$[11] | async
-                        }}</a></span
-                    >
-                </div>
+<div class="dashboard-page">
+    <div class="terminal-window"
+         [class.maximized]="isMaximized"
+         [class.minimizing]="isMinimizing"
+         (click)="skipTyping()">
+        <div class="title-bar">
+            <div class="window-controls">
+                <button class="dot close" (click)="onClose()" aria-label="Close"></button>
+                <button class="dot minimize" (click)="onMinimize()" aria-label="Minimize"></button>
+                <button class="dot maximize" (click)="onMaximize()" aria-label="Maximize"></button>
             </div>
-            <span class="token">{{ tokens$[12] | async }}</span>
+            <span class="filename">dashboard.go</span>
         </div>
-    </div>
-    <br />
-    <div>
-        <div>
-            <span class="keyword token">{{ tokens$[13] | async }}</span>
-            <span class="token">{{ tokens$[14] | async }}</span>
-            <span class="var token">{{ tokens$[15] | async }}</span>
-            <span class="token">{{ tokens$[16] | async }}</span>
-            <span id="r" class="type token">{{ tokens$[17] | async }}</span>
-            <span class="token">{{ tokens$[18] | async }}</span>
-            <span class="func token">{{ tokens$[19] | async }}</span>
-            <span class="token">{{ tokens$[20] | async }}</span>
-            <span class="type token">{{ tokens$[21] | async }}</span>
-            <span class="token">{{ tokens$[22] | async }}</span>
-        </div>
-        <div id="body-container">
-            <div id="about-container" class="nav-container">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span
-                    (mouseenter)="tokenize('about')"
-                    (mouseleave)="tokenize('nil')"
-                    (click)="navigate('/about')"
-                    class="var click token"
-                    >{{ tokens$[23] | async }}</span
-                >
-                <span class="token">{{ tokens$[24] | async }}</span>
-                <span class="var token">{{ tokens$[25] | async }}</span>
-                <span class="token">{{ tokens$[26] | async }}</span>
-                <span
-                    (click)="navigate('/about')"
-                    (mouseenter)="tokenize('about')"
-                    (mouseleave)="tokenize('nil')"
-                    class="identifier click token"
-                    >{{ tokens$[27] | async }}</span
-                >
-            </div>
-            <div id="projects-container" class="nav-container">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span
-                    (mouseenter)="tokenize('projects')"
-                    (mouseleave)="tokenize('nil')"
-                    (click)="navigate('/projects')"
-                    class="var click token"
-                    >{{ tokens$[28] | async }}</span
-                >
-                <span class="token">{{ tokens$[29] | async }}</span>
-                <span class="var token">{{ tokens$[30] | async }}</span>
-                <span class="token">{{ tokens$[31] | async }}</span>
-                <span
-                    (click)="navigate('/projects')"
-                    (mouseenter)="tokenize('projects')"
-                    (mouseleave)="tokenize('nil')"
-                    class="identifier click token"
-                    >{{ tokens$[32] | async }}</span
-                >
-            </div>
-            <div id="resume-container" class="nav-container">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span
-                    (mouseenter)="tokenize('resume')"
-                    (mouseleave)="tokenize('nil')"
-                    (click)="navigate('/resume')"
-                    class="var click token"
-                    >{{ tokens$[33] | async }}</span
-                >
-                <span class="token">{{ tokens$[34] | async }}</span>
-                <span class="var token">{{ tokens$[35] | async }}</span>
-                <span class="token">{{ tokens$[36] | async }}</span>
-                <span
-                    (click)="navigate('/resume')"
-                    (mouseenter)="tokenize('resume')"
-                    (mouseleave)="tokenize('nil')"
-                    class="identifier click token"
-                    >{{ tokens$[37] | async }}</span
-                >
-            </div>
-            <br />
-            <div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span class="keyword token">{{ tokens$[38] | async }}</span>
-                <span
-                    id="return-val"
-                    [ngClass]="{
-                        const: hoveredVar === 'nil',
-                        var: hoveredVar !== 'nil',
-                    }"
-                    class="token"
-                    >{{ tokens$[39] | async }}</span
-                >
-            </div>
-            <div class="token">{{ tokens$[40] | async }}</div>
+        <div class="editor">
+            @for (line of lines; track $index; let lineIdx = $index) {
+                <div class="line"
+                     [class.nav-line]="isLineReady(lineIdx) && isNavLine(lineIdx)"
+                     [class.link-line]="isLineReady(lineIdx) && isLinkLine(lineIdx)"
+                     (mouseenter)="onLineHover(lineIdx)"
+                     (mouseleave)="onLineLeave()"
+                     (click)="onLineClick(lineIdx)"
+                     (keydown.enter)="onLineClick(lineIdx)"
+                     [attr.tabindex]="isLineReady(lineIdx) && isNavLine(lineIdx) ? 0 : null"
+                     [attr.role]="isNavLine(lineIdx) ? 'link' : null">
+                    <span class="gutter">{{ lineIdx + 1 }}</span>
+                    <span class="code">
+                        @for (token of line; track $index) {
+                            @if (token.link && isLineReady(lineIdx)) {
+                                <a [class]="token.cls"
+                                   [href]="token.link"
+                                   target="_blank"
+                                   rel="noopener"
+                                   (click)="$event.stopPropagation()">{{ token.typed }}</a>
+                            } @else {
+                                <span [class]="token.cls">{{ token.typed }}</span>
+                            }
+                        }
+                        @if (lineIdx === cursorLine) {
+                            <span class="cursor" [class.blink]="!isTyping"></span>
+                        }
+                    </span>
+                </div>
+            }
         </div>
     </div>
 </div>

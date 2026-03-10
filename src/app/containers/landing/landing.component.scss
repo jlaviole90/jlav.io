@@ -1,16 +1,94 @@
-#landing-page-container {
-    overflow: hidden;
-    #header-container {
-        width: 100%;
-        height: 10%;
-        position: absolute;
-        transform: perspective(300px) rotateX(10deg) translate(0%, 200%);
+#landing-scroll {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
 
-        h1 {
-            font-weight: 500;
-            font-size: 9vh;
-            text-align: center;
-            color: white;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+#hero-section {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#hero-title {
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+    font-size: clamp(3rem, 10vw, 8rem);
+    text-align: center;
+    color: #fff;
+    letter-spacing: 0.08em;
+    margin: 0;
+    will-change: opacity;
+}
+
+app-grid {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+#scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    will-change: opacity;
+
+    .scroll-text {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+    }
+
+    .scroll-line {
+        display: block;
+        width: 1px;
+        height: 40px;
+        position: relative;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.1);
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.6));
+            animation: scroll-line-pulse 1.5s ease-in-out infinite;
         }
+    }
+}
+
+#scroll-runway {
+    height: 150vh;
+    pointer-events: none;
+}
+
+@keyframes scroll-line-pulse {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 100%;
     }
 }
