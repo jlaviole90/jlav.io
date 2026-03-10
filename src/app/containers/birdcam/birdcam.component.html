@@ -1,13 +1,35 @@
-<div id="birdcam-container">
-    <div id="player-wrapper">
-        <video #videoPlayer muted autoplay playsinline></video>
-        <div id="status-bar">
-            <span id="live-badge" [class.active]="isLive">LIVE</span>
-        </div>
-        @if (error) {
-            <div id="overlay">
-                <p>{{ error }}</p>
-            </div>
-        }
+@if (!authenticated) {
+    <div id="auth-container">
+        <form (ngSubmit)="submitPassphrase()" id="auth-form">
+            <label for="passphrase">Enter passphrase</label>
+            <input
+                id="passphrase"
+                type="password"
+                [(ngModel)]="passphrase"
+                name="passphrase"
+                autocomplete="off"
+                [disabled]="loading"
+            />
+            <button type="submit" [disabled]="loading || !passphrase">
+                {{ loading ? 'Checking…' : 'Enter' }}
+            </button>
+            @if (error) {
+                <p class="error">{{ error }}</p>
+            }
+        </form>
     </div>
-</div>
+} @else {
+    <div id="birdcam-container">
+        <div id="player-wrapper">
+            <video #videoPlayer muted autoplay playsinline></video>
+            <div id="status-bar">
+                <span id="live-badge" [class.active]="isLive">LIVE</span>
+            </div>
+            @if (error) {
+                <div id="overlay">
+                    <p>{{ error }}</p>
+                </div>
+            }
+        </div>
+    </div>
+}
