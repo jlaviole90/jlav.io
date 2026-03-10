@@ -20,6 +20,7 @@
     "@angular/router": "^19.2.0",
     "@vercel/analytics": "^1.5.0",
     "@vercel/blob": "^0.23.4",
+    "hls.js": "^1.6.15",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "vercel": "^35.1.0",

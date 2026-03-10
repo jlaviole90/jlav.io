@@ -4,6 +4,7 @@ import { LandingComponent } from './containers/landing/landing.component';
 import { ProjectsComponent } from './containers/projects/projects.component';
 import { ResumeComponent } from './containers/resume/resume.component';
 import { AboutComponent } from './containers/about/about.component';
+import { BirdcamComponent } from './containers/birdcam/birdcam.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     {
         path: 'resume',
         component: ResumeComponent,
+    },
+    {
+        path: 'birds',
+        component: BirdcamComponent,
     },
     {
         path: '',
