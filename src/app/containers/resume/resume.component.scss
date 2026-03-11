@@ -1,4 +1,88 @@
-* {
-    font-size: 3rem;
-    color: white;
+#resume-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #e0e0e0;
+}
+
+.page-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 24px;
+
+    .nav-link {
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.4);
+        cursor: pointer;
+        padding: 6px 12px;
+        border-radius: 4px;
+        transition: color 0.2s, background-color 0.2s;
+
+        &:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+    }
+}
+
+.resume-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+}
+
+.card {
+    text-align: center;
+    max-width: 420px;
+    padding: 48px 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0 0 16px;
+    }
+
+    p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.55);
+        margin: 0 0 28px;
+    }
+}
+
+.linkedin-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    background: #0a66c2;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+
+    &:hover {
+        background: #0854a0;
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 600px) {
+    .card {
+        padding: 36px 24px;
+        margin: 0 8px;
+    }
 }
