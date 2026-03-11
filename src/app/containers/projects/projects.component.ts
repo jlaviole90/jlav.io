@@ -1,8 +1,12 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { catchError, map, of } from 'rxjs';
+
+const GITHUB_USERNAME = 'jlaviole90';
+const GITHUB_API = 'https://api.github.com';
 
 interface Project {
     name: string;
@@ -19,7 +23,7 @@ interface Project {
     styleUrls: ['./projects.component.scss'],
     imports: [CommonModule],
 })
-export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
     projects: Project[] = [];
     loading = true;
     error = false;
@@ -28,6 +32,7 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef<HTMLElement>;
 
     private observer: IntersectionObserver | null = null;
+    private revealTimeout: ReturnType<typeof setTimeout> | null = null;
 
     constructor(
         private readonly http: HttpClient,
@@ -36,11 +41,15 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
     ) {}
 
     ngOnInit(): void {
-        this.http.get<Project[]>('/api/projects').subscribe({
+        this.http.get<Project[]>('/api/projects').pipe(
+            catchError(() => {
+                return this.fetchFromGitHub();
+            }),
+        ).subscribe({
             next: (data) => {
                 this.projects = data;
                 this.loading = false;
-                setTimeout(() => this.observeCards(), 0);
+                setTimeout(() => this.setupReveal(), 50);
             },
             error: () => {
                 this.error = true;
@@ -49,18 +58,38 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
         });
     }
 
-    ngAfterViewInit(): void {
-        this.observeCards();
-    }
-
     ngOnDestroy(): void {
         this.observer?.disconnect();
+        if (this.revealTimeout) clearTimeout(this.revealTimeout);
     }
 
-    private observeCards(): void {
-        this.observer?.disconnect();
+    private fetchFromGitHub() {
+        return this.http.get<any[]>(
+            `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=12&type=owner`,
+        ).pipe(
+            catchError(() => of([] as any[])),
+            map((repos: any[]) =>
+                repos
+                    .filter((r: any) => !r.fork)
+                    .slice(0, 6)
+                    .map((r: any) => ({
+                        name: r.name,
+                        url: r.html_url,
+                        description: r.description,
+                        language: r.language,
+                        topics: r.topics ?? [],
+                        readme: null,
+                    } as Project)),
+            ),
+        );
+    }
+
+    private setupReveal(): void {
         const root = this.scrollContainer?.nativeElement;
         if (!root) return;
+
+        const cards = root.querySelectorAll('.project-card');
+        cards.forEach((card) => card.classList.add('pre-reveal'));
 
         this.observer = new IntersectionObserver(
             (entries) => {
@@ -71,12 +100,14 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
                     }
                 }
             },
-            { root, threshold: 0.15 },
+            { root, threshold: 0.1 },
         );
 
-        root.querySelectorAll('.project-card').forEach((card) => {
-            this.observer!.observe(card);
-        });
+        cards.forEach((card) => this.observer!.observe(card));
+
+        this.revealTimeout = setTimeout(() => {
+            cards.forEach((card) => card.classList.add('revealed'));
+        }, 2000);
     }
 
     navigate(path: string): void {
