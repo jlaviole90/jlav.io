@@ -1,28 +1,59 @@
-<div>
-    <h1>Sorry, this page is still under construction. Check these out while you're here.</h1>
-</div>
-<div id="projects-container">
-    <app-display-box
-        title="Discord Quotes Bot"
-        description="A Discord bot that watches for specific reactions on messages,
-    and then reposts the message into a quotes channel using a webhook disguised
-    as the original message author."
-        link="https://github.com/jlaviole90/discord-quotes-bot"
-    >
-    </app-display-box>
-    <app-display-box
-        title="Discord Tier List Bot"
-        description="A Discord bot with build a built in PostgreSQL database, where users
-    can create their own tables, and store numerical data in them tied to
-    specific server members."
-        link="https://github.com/jlaviole90/discord-tier-list-bot"
-    >
-    </app-display-box>
-    <app-display-box
-        title="CLI Websocket Chat"
-        description="A client and server written in Go that hosts a websocket chat directly
-    in the terminal."
-        link="https://github.com/jlaviole90/clich"
-    >
-    </app-display-box>
+<div id="projects-page">
+    <nav class="page-nav">
+        <button class="nav-link" (click)="navigate('/dashboard')">← Dashboard</button>
+        <button class="nav-link" (click)="navigate('/about')">About →</button>
+    </nav>
+
+    <div class="projects-content">
+        <h1 class="page-title">Projects</h1>
+        <p class="page-subtitle">Pulled live from GitHub</p>
+
+        @if (loading) {
+            <div class="loading">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        } @else if (error) {
+            <p class="error-msg">Couldn't reach GitHub right now. Try again later.</p>
+        } @else {
+            <div class="project-grid">
+                @for (project of projects; track project.name; let i = $index) {
+                    <div class="project-card" [class.expanded]="expandedIdx === i">
+                        <div class="card-header" (click)="toggleReadme(i)" (keydown.enter)="toggleReadme(i)">
+                            <div class="card-title-row">
+                                <h2>{{ formatName(project.name) }}</h2>
+                                <a class="gh-link"
+                                   [href]="project.url"
+                                   target="_blank"
+                                   rel="noopener"
+                                   (click)="$event.stopPropagation()"
+                                   title="View on GitHub">↗</a>
+                            </div>
+                            @if (project.description) {
+                                <p class="desc">{{ project.description }}</p>
+                            }
+                            <div class="card-meta">
+                                @if (project.language) {
+                                    <span class="lang">
+                                        <span class="lang-dot" [style.background]="langColor(project.language)"></span>
+                                        {{ project.language }}
+                                    </span>
+                                }
+                                @for (topic of project.topics.slice(0, 3); track topic) {
+                                    <span class="topic">{{ topic }}</span>
+                                }
+                            </div>
+                            @if (project.readme) {
+                                <span class="expand-hint">{{ expandedIdx === i ? '▲ collapse' : '▼ readme' }}</span>
+                            }
+                        </div>
+                        @if (expandedIdx === i && project.readme) {
+                            <div class="readme-body" [innerHTML]="getReadmeHtml(project)"></div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
 </div>

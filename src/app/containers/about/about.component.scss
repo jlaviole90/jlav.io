@@ -226,10 +226,40 @@
 }
 
 @media (max-width: 900px) {
+    #about-page {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .page-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: none;
+        backdrop-filter: none;
+        padding: 10px 12px;
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.6);
+        }
+    }
+
     #about-container {
         flex-direction: column;
         align-items: center;
-        padding: 60px 16px;
+        height: auto;
+        min-height: 0;
+        padding: 48px 16px 48px;
+        gap: 40px;
+    }
+
+    #about-me {
+        order: -1;
+        transform: rotate(1deg);
+        width: 85vw;
     }
 
     #about-this-site {
@@ -239,9 +269,5 @@
 
     .section {
         width: 85vw;
-    }
-
-    #about-me {
-        transform: rotate(1deg);
     }
 }
