@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -19,11 +19,15 @@ interface Project {
     styleUrls: ['./projects.component.scss'],
     imports: [CommonModule],
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
     projects: Project[] = [];
     loading = true;
     error = false;
     expandedIdx: number | null = null;
+
+    @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef<HTMLElement>;
+
+    private observer: IntersectionObserver | null = null;
 
     constructor(
         private readonly http: HttpClient,
@@ -36,11 +40,42 @@ export class ProjectsComponent implements OnInit {
             next: (data) => {
                 this.projects = data;
                 this.loading = false;
+                setTimeout(() => this.observeCards(), 0);
             },
             error: () => {
                 this.error = true;
                 this.loading = false;
             },
+        });
+    }
+
+    ngAfterViewInit(): void {
+        this.observeCards();
+    }
+
+    ngOnDestroy(): void {
+        this.observer?.disconnect();
+    }
+
+    private observeCards(): void {
+        this.observer?.disconnect();
+        const root = this.scrollContainer?.nativeElement;
+        if (!root) return;
+
+        this.observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        (entry.target as HTMLElement).classList.add('revealed');
+                        this.observer!.unobserve(entry.target);
+                    }
+                }
+            },
+            { root, threshold: 0.15 },
+        );
+
+        root.querySelectorAll('.project-card').forEach((card) => {
+            this.observer!.observe(card);
         });
     }
 
