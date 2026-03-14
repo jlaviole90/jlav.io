@@ -4,19 +4,129 @@
         <button class="nav-link" (click)="navigate('/about')">About →</button>
     </nav>
 
-    <div class="resume-content">
-        <div class="card">
-            <h1>Resume</h1>
-            <p>
-                This page is still being put together.
-                In the meantime, feel free to reach out — I'd love to connect.
-            </p>
-            <a class="linkedin-btn"
-               href="https://www.linkedin.com/in/joshualaviolette/"
-               target="_blank"
-               rel="noopener">
-                Connect on LinkedIn →
-            </a>
+    <div class="resume-scroll">
+        <div class="resume-sheet">
+            <header class="resume-header">
+                <h1>Joshua Laviolette</h1>
+                <p class="subtitle">Software Engineer</p>
+                <p class="contact">
+                    (262) 995-4394 &nbsp;|&nbsp; jlaviole90&#64;gmail.com &nbsp;|&nbsp;
+                    <a href="https://www.linkedin.com/in/joshualaviolette/" target="_blank" rel="noopener">linkedin.com/in/joshualaviolette</a>
+                    &nbsp;|&nbsp;
+                    <a href="https://jlav.io">jlav.io</a>
+                </p>
+            </header>
+
+            <section>
+                <h2 class="section-title">Summary</h2>
+                <p class="summary">
+                    Full-stack software engineer specializing in enterprise integrations, API design,
+                    and modernizing legacy systems. Experienced across the full development lifecycle
+                    from architecture through deployment, with a track record of translating complex
+                    business requirements into scalable, maintainable solutions. Actively leverages AI
+                    tooling to accelerate development workflows, improve code quality, and multiply
+                    individual output across concurrent engagements.
+                </p>
+            </section>
+
+            <section>
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <span>Java / Spring Boot</span>
+                    <span>Angular / TypeScript</span>
+                    <span>Python / Go / Rust</span>
+                    <span>REST API Design</span>
+                    <span>PostgreSQL / Oracle / NoSQL</span>
+                    <span>AWS / Azure Cloud</span>
+                    <span>AI / ML / LLM Training</span>
+                    <span>AI-Assisted Development</span>
+                    <span>Kafka / Async Messaging</span>
+                    <span>CI/CD / Docker</span>
+                    <span>Third-Party Integrations</span>
+                    <span>Agile / Scrum</span>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Experience</h2>
+
+                <div class="job">
+                    <div class="job-head">
+                        <span class="job-title">Software Consultant</span>
+                        <span class="job-date">Apr 2024 - Present</span>
+                    </div>
+                    <div class="job-company">Zeal IT Consultants</div>
+
+                    <div class="client-label">Client: McKesson Pharmaceuticals (Jan 2025 - Present)</div>
+                    <ul>
+                        <li>Architected and built a greenfield prescription eligibility checking engine using Spring Boot and PostgreSQL, replacing a single critical node within a 200+ decision/action workflow engine embedded in a 30-year-old Java/Swing monolith.</li>
+                        <li>Worked directly with the customer-facing product team to translate business requirements into technical specifications, bridging the gap between product vision and the development team to ensure alignment on priorities, compliance expectations, and delivery timelines.</li>
+                        <li>Designed APIs for primary and secondary eligibility that consolidated multiple legacy data sources, reducing network overhead and improving data visibility for technicians and customers with first-ever eligibility history views.</li>
+                        <li>Built a resilient integration layer between the new microservice and the legacy system using circuit breakers, retries, and multi-tenant authentication, ensuring backward compatibility while enabling modern capabilities.</li>
+                        <li>Served as tech lead: mentored entry-level developers, led architecture discussions, reviewed PRs, and coordinated across product, architecture, and data insights teams as a consultant embedded in the business.</li>
+                    </ul>
+
+                    <div class="client-label">Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)</div>
+                    <ul>
+                        <li>Designed, built, and deployed customer-facing checkout systems for dental discount plans (1dental.com, careington1.com) using Angular, Go, and Node.js, handling multiple providers, pricing models, and payment flows.</li>
+                        <li>Integrated a broad set of third-party services to support multi-brand checkout, affiliate tracking, and provider search across consumer, wholesale, and Spanish-language sites.</li>
+                        <li>Engineered an Azure Functions-based domain resolution service that redirected 80+ legacy affiliate subdomains to the modernized platform with preserved affiliate attribution codes.</li>
+                        <li>Initially scoped for a 6-month engagement; retained for 18 months due to volume and quality of delivered work. Managed both the Qualbe and McKesson engagements concurrently for 10 months, consistently delivering high-quality results on both.</li>
+                        <li>Adopted AI-assisted development tools early to accelerate feature delivery, streamline code review, and rapidly onboard into unfamiliar codebases and third-party ecosystems, directly contributing to the pace that earned the extended engagement.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-head">
+                        <span class="job-title">Software Developer - Supply Chain</span>
+                        <span class="job-date">Jun 2022 - Apr 2024</span>
+                    </div>
+                    <div class="job-company">Uline</div>
+                    <ul>
+                        <li>Led a team of five in refactoring a monolithic service into microservices, enabling operations teams to maintain visibility and legislative compliance for domestic and international transfers.</li>
+                        <li>Built an integration framework between Manhattan WMS and a modernized microservices architecture for warehouse management.</li>
+                        <li>Implemented idempotent purchase order transaction tracking to prevent duplicate updates across distributed systems.</li>
+                        <li>Organized a hackathon and built a system for generating customer orders through email-based punch-out systems, leveraging machine learning for email categorization and product suggestions.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-head">
+                        <span class="job-title">Software Engineering Intern</span>
+                        <span class="job-date">Sep 2021 - May 2022</span>
+                    </div>
+                    <div class="job-company">UW-Parkside App Factory, Kenosha, WI</div>
+                    <ul>
+                        <li>Developed a public-facing kiosk application displaying real-time solar panel data for the City of Menasha, Wisconsin.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title">Side Projects</h2>
+                <ul>
+                    <li>Trained LLMs on Discord conversation data collected via Raspberry Pi for user behavior modeling and conversational AI experimentation.</li>
+                    <li>Built a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion (Nginx on Raspberry Pi, Tailscale Funnel) with passphrase-protected access via serverless functions and hls.js.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="section-title">Education</h2>
+                <div class="job-head">
+                    <span class="job-title">Bachelor of Science in Computer Science</span>
+                    <span class="job-date">May 2022</span>
+                </div>
+                <div class="job-company">University of Wisconsin - Parkside</div>
+            </section>
+
+            <footer class="resume-footer">
+                <a class="linkedin-btn"
+                   href="https://www.linkedin.com/in/joshualaviolette/"
+                   target="_blank"
+                   rel="noopener">
+                    Connect on LinkedIn
+                </a>
+            </footer>
         </div>
     </div>
 </div>

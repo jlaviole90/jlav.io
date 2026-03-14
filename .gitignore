@@ -44,3 +44,6 @@ Thumbs.db
 
 .env.development.local
 .env
+
+# Python
+.pip_libs/
