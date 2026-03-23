@@ -158,6 +158,28 @@ ul {
     }
 }
 
+.project {
+    margin-bottom: 14px;
+}
+
+.project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.project-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.project-tech {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    white-space: nowrap;
+}
+
 .resume-footer {
     margin-top: 24px;
     padding-top: 16px;
@@ -196,12 +218,12 @@ ul {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .job-head {
+    .job-head, .project-head {
         flex-direction: column;
         gap: 0;
     }
 
-    .job-date {
+    .job-date, .project-tech {
         font-size: 0.76rem;
     }
 }

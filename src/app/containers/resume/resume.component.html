@@ -57,7 +57,7 @@
                     </div>
                     <div class="job-company">Zeal IT Consultants</div>
 
-                    <div class="client-label">Client: McKesson Pharmaceuticals (Jan 2025 - Present)</div>
+                    <div class="client-label">Client: McKesson (Jan 2025 - Present)</div>
                     <ul>
                         <li>Architected and built a greenfield prescription eligibility checking engine using Spring Boot and PostgreSQL, replacing a single critical node within a 200+ decision/action workflow engine embedded in a 30-year-old Java/Swing monolith.</li>
                         <li>Worked directly with the customer-facing product team to translate business requirements into technical specifications, bridging the gap between product vision and the development team to ensure alignment on priorities, compliance expectations, and delivery timelines.</li>
@@ -103,11 +103,51 @@
             </section>
 
             <section>
-                <h2 class="section-title">Side Projects</h2>
-                <ul>
-                    <li>Trained LLMs on Discord conversation data collected via Raspberry Pi for user behavior modeling and conversational AI experimentation.</li>
-                    <li>Built a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion (Nginx on Raspberry Pi, Tailscale Funnel) with passphrase-protected access via serverless functions and hls.js.</li>
-                </ul>
+                <h2 class="section-title">Personal Projects</h2>
+
+                <div class="project">
+                    <div class="project-head">
+                        <span class="project-title">Discord Server Analytics Bot</span>
+                        <span class="project-tech">Go</span>
+                    </div>
+                    <ul>
+                        <li>Built a Discord bot in Go that collects and analyzes server activity, providing users with detailed insights including post counts, message history, channel popularity rankings, and per-user engagement statistics.</li>
+                        <li>Designed a data cleaning and formatting pipeline that transforms raw Discord conversation data into structured training datasets suitable for LLM fine-tuning.</li>
+                        <li>Feeds processed data into a local network training pipeline on Raspberry Pi hardware, handling the full lifecycle from collection through model deployment.</li>
+                    </ul>
+                </div>
+
+                <div class="project">
+                    <div class="project-head">
+                        <span class="project-title">Discord LLM Chatbot</span>
+                        <span class="project-tech">Go / Python</span>
+                    </div>
+                    <ul>
+                        <li>Deployed a conversational AI chatbot to Discord, powered by a locally trained LLM fine-tuned on real user conversation data collected by the analytics bot.</li>
+                        <li>Built the end-to-end pipeline connecting data collection, model training, and live inference across multiple services on a local network.</li>
+                    </ul>
+                </div>
+
+                <div class="project">
+                    <div class="project-head">
+                        <span class="project-title">Bird Feeder Live Stream</span>
+                        <span class="project-tech">Nginx / HLS / Vercel</span>
+                    </div>
+                    <ul>
+                        <li>Built a live bird feeder camera stream on jlav.io using a Birdify camera streaming RTMP to a Raspberry Pi running Nginx for HLS conversion, exposed publicly via Tailscale Funnel.</li>
+                        <li>Implemented passphrase-protected access through a Vercel serverless function that validates credentials server-side before returning the stream URL, with browser playback handled by hls.js.</li>
+                    </ul>
+                </div>
+
+                <div class="project">
+                    <div class="project-head">
+                        <span class="project-title">jlav.io - Personal Portfolio</span>
+                        <span class="project-tech">Angular 19 / Vercel</span>
+                    </div>
+                    <ul>
+                        <li>Designed and built a personal portfolio site featuring scroll-driven grid animations, a terminal-themed typewriter dashboard, dynamic GitHub project listings via serverless API, and a full interactive resume page.</li>
+                    </ul>
+                </div>
             </section>
 
             <section>

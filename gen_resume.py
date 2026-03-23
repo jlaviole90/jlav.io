@@ -6,52 +6,61 @@ from fpdf import FPDF
 class ResumePDF(FPDF):
     def __init__(self):
         super().__init__('P', 'pt', 'Letter')
-        self.set_auto_page_break(auto=False)
-        self.set_margins(42, 38, 42)
+        self.set_auto_page_break(auto=True, margin=44)
+        self.set_margins(48, 44, 48)
 
     def section_divider(self, title):
-        self.set_font('Helvetica', 'B', 9.5)
+        self.set_font('Helvetica', 'B', 11)
         self.set_text_color(17, 17, 17)
-        self.cell(0, 14, title.upper(), new_x="LMARGIN", new_y="NEXT")
-        self.set_draw_color(190, 190, 190)
-        self.line(self.l_margin, self.get_y() - 1.5, self.w - self.r_margin, self.get_y() - 1.5)
+        self.cell(0, 16, title.upper(), new_x="LMARGIN", new_y="NEXT")
+        self.set_draw_color(170, 170, 170)
+        self.line(self.l_margin, self.get_y() - 2, self.w - self.r_margin, self.get_y() - 2)
 
     def job_header(self, title, date):
-        self.set_font('Helvetica', 'B', 9.5)
+        self.set_font('Helvetica', 'B', 10.5)
         self.set_text_color(26, 26, 26)
         tw = self.get_string_width(title)
-        self.cell(tw + 2, 13, title)
-        self.set_font('Helvetica', '', 8.5)
+        self.cell(tw + 2, 15, title)
+        self.set_font('Helvetica', '', 9.5)
         self.set_text_color(85, 85, 85)
-        self.cell(0, 13, date, align='R', new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 15, date, align='R', new_x="LMARGIN", new_y="NEXT")
 
     def company_line(self, text):
-        self.set_font('Helvetica', 'I', 8.5)
+        self.set_font('Helvetica', 'I', 9.5)
         self.set_text_color(68, 68, 68)
-        self.cell(0, 11, text, new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
 
     def client_label(self, text):
-        self.set_font('Helvetica', 'B', 8.5)
+        self.set_font('Helvetica', 'B', 9.5)
         self.set_text_color(34, 34, 34)
-        self.cell(0, 12.5, text, new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 14, text, new_x="LMARGIN", new_y="NEXT")
 
     def bullet(self, text):
-        self.set_font('Helvetica', '', 8.5)
+        self.set_font('Helvetica', '', 9.5)
         self.set_text_color(51, 51, 51)
         x = self.get_x()
-        self.cell(9, 4.5, '-')
-        self.set_x(x + 9)
-        self.multi_cell(0, 11, text, new_x="LMARGIN", new_y="NEXT")
+        self.cell(10, 5, '-')
+        self.set_x(x + 10)
+        self.multi_cell(0, 12.5, text, new_x="LMARGIN", new_y="NEXT")
 
     def skill_row(self, items):
         col_w = (self.w - self.l_margin - self.r_margin) / 3
-        self.set_font('Helvetica', '', 8.5)
+        self.set_font('Helvetica', '', 9.5)
         self.set_text_color(51, 51, 51)
         y = self.get_y()
         for i, item in enumerate(items):
             self.set_xy(self.l_margin + i * col_w, y)
-            self.cell(col_w, 11.5, item)
-        self.set_y(y + 11.5)
+            self.cell(col_w, 13, item)
+        self.set_y(y + 13)
+
+    def project_header(self, title, tech):
+        self.set_font('Helvetica', 'B', 10)
+        self.set_text_color(26, 26, 26)
+        tw = self.get_string_width(title)
+        self.cell(tw + 4, 14, title)
+        self.set_font('Helvetica', '', 9)
+        self.set_text_color(100, 100, 100)
+        self.cell(0, 14, tech, align='R', new_x="LMARGIN", new_y="NEXT")
 
 
 def build():
@@ -59,27 +68,27 @@ def build():
     pdf.add_page()
 
     # Name
-    pdf.set_font('Helvetica', 'B', 19)
+    pdf.set_font('Helvetica', 'B', 22)
     pdf.set_text_color(26, 26, 26)
-    pdf.cell(0, 22, 'Joshua Laviolette', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 26, 'Joshua Laviolette', new_x="LMARGIN", new_y="NEXT")
 
     # Subtitle
-    pdf.set_font('Helvetica', '', 10.5)
+    pdf.set_font('Helvetica', '', 12)
     pdf.set_text_color(68, 68, 68)
-    pdf.cell(0, 12, 'Software Engineer', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 14, 'Software Engineer', new_x="LMARGIN", new_y="NEXT")
 
     # Contact
-    pdf.set_font('Helvetica', '', 8)
+    pdf.set_font('Helvetica', '', 9)
     pdf.set_text_color(85, 85, 85)
-    pdf.cell(0, 10, '(262) 995-4394  |  jlaviole90@gmail.com  |  linkedin.com/in/joshualaviolette  |  jlav.io', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 12, '(262) 995-4394  |  jlaviole90@gmail.com  |  linkedin.com/in/joshualaviolette  |  jlav.io', new_x="LMARGIN", new_y="NEXT")
 
-    pdf.ln(4)
+    pdf.ln(6)
 
     # Summary
     pdf.section_divider('Summary')
-    pdf.set_font('Helvetica', '', 8.5)
+    pdf.set_font('Helvetica', '', 9.5)
     pdf.set_text_color(51, 51, 51)
-    pdf.multi_cell(0, 11, (
+    pdf.multi_cell(0, 12.5, (
         'Full-stack software engineer specializing in enterprise integrations, API design, '
         'and modernizing legacy systems. Experienced across the full development lifecycle '
         'from architecture through deployment, with a track record of translating complex '
@@ -87,7 +96,7 @@ def build():
         'tooling to accelerate development workflows, improve code quality, and multiply '
         'individual output across concurrent engagements.'
     ), new_x="LMARGIN", new_y="NEXT")
-    pdf.ln(3)
+    pdf.ln(4)
 
     # Skills
     pdf.section_divider('Skills')
@@ -95,18 +104,18 @@ def build():
     pdf.skill_row(['REST API Design', 'PostgreSQL / Oracle / NoSQL', 'AWS / Azure Cloud'])
     pdf.skill_row(['AI / ML / LLM Training', 'AI-Assisted Development', 'Kafka / Async Messaging'])
     pdf.skill_row(['CI/CD / Docker', 'Third-Party Integrations', 'Agile / Scrum'])
-    pdf.ln(3)
+    pdf.ln(4)
 
     # Experience
     pdf.section_divider('Experience')
 
-    pdf.job_header('Software Consultant', 'Apr 2024 - Present')
+    pdf.job_header('Senior Software Engineer', 'Apr 2024 - Present')
     pdf.company_line('Zeal IT Consultants')
 
-    pdf.client_label('Client: McKesson Pharmaceuticals (Jan 2025 - Present)')
+    pdf.client_label('Client: McKesson (Jan 2025 - Present)')
     pdf.bullet(
         'Architected and built a greenfield prescription eligibility checking engine using '
-        'Spring Boot and PostgreSQL, replacing a single critical node within a 200+ '
+        'Spring Boot and PostgreSQL, replacing a set of critical nodes within a 200+ '
         'decision/action workflow engine embedded in a 30-year-old Java/Swing monolith.'
     )
     pdf.bullet(
@@ -148,11 +157,11 @@ def build():
         'attribution codes.'
     )
     pdf.bullet(
-        'Initially scoped for a 6-month engagement; retained for 18 months due to volume '
-        'and quality of delivered work. Managed both the Qualbe and McKesson engagements '
-        'concurrently for 10 months, consistently delivering high-quality results on both.'
+        'Retained by the client for 18 months due to volume and quality of delivered work, '
+        'despite being initially scoped for a 6-month engagement. Managed both the Qualbe '
+        'and McKesson engagements concurrently for 10 months, consistently delivering '
+        'high-quality results on both.'
     )
-
     pdf.bullet(
         'Adopted AI-assisted development tools early to accelerate feature delivery, '
         'streamline code review, and rapidly onboard into unfamiliar codebases and '
@@ -181,6 +190,10 @@ def build():
         'and product suggestions.'
     )
 
+    # Keep internship together on one page
+    if pdf.get_y() + 55 > 792 - 44:
+        pdf.add_page()
+
     pdf.job_header('Software Engineering Intern', 'Sep 2021 - May 2022')
     pdf.company_line('UW-Parkside App Factory, Kenosha, WI')
     pdf.bullet(
@@ -188,39 +201,71 @@ def build():
         'for the City of Menasha, Wisconsin.'
     )
 
-    pdf.ln(3)
+    pdf.ln(4)
 
-    # Side Projects
-    pdf.section_divider('Side Projects')
+    # Personal Projects
+    pdf.section_divider('Personal Projects')
+
+    pdf.project_header('Discord Server Analytics Bot', 'Go')
     pdf.bullet(
-        'Trained LLMs on Discord conversation data collected via Raspberry Pi for user '
-        'behavior modeling and conversational AI experimentation.'
+        'Built a Discord bot in Go that collects and analyzes server activity, providing '
+        'users with detailed insights including post counts, message history, channel '
+        'popularity rankings, and per-user engagement statistics.'
     )
     pdf.bullet(
-        'Built a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion '
-        '(Nginx on Raspberry Pi, Tailscale Funnel) with passphrase-protected access via '
-        'serverless functions and hls.js.'
+        'Designed a data cleaning and formatting pipeline that transforms raw Discord '
+        'conversation data into structured training datasets suitable for LLM fine-tuning.'
+    )
+    pdf.bullet(
+        'Feeds processed data into a local network training pipeline on Raspberry Pi '
+        'hardware, handling the full lifecycle from collection through model deployment.'
     )
 
-    pdf.ln(3)
+    pdf.project_header('Discord LLM Chatbot', 'Go / Python')
+    pdf.bullet(
+        'Deployed a conversational AI chatbot to Discord, powered by a locally trained '
+        'LLM fine-tuned on real user conversation data collected by the analytics bot.'
+    )
+    pdf.bullet(
+        'Built the end-to-end pipeline connecting data collection, model training, and '
+        'live inference across multiple services on a local network.'
+    )
+
+    pdf.project_header('Bird Feeder Live Stream', 'Nginx / HLS / Vercel')
+    pdf.bullet(
+        'Built a live bird feeder camera stream on jlav.io using a Birdify camera '
+        'streaming RTMP to a Raspberry Pi running Nginx for HLS conversion, exposed '
+        'publicly via Tailscale Funnel.'
+    )
+    pdf.bullet(
+        'Implemented passphrase-protected access through a Vercel serverless function '
+        'that validates credentials server-side before returning the stream URL, '
+        'with browser playback handled by hls.js.'
+    )
+
+    pdf.project_header('jlav.io - Personal Portfolio', 'Angular / Vercel')
+    pdf.bullet(
+        'Designed and built a personal portfolio site featuring scroll-driven grid '
+        'animations, a terminal-themed typewriter dashboard, dynamic GitHub project '
+        'listings via serverless API, and a full interactive resume page.'
+    )
+
+    pdf.ln(4)
 
     # Education
     pdf.section_divider('Education')
-    pdf.set_font('Helvetica', 'B', 9)
+    pdf.set_font('Helvetica', 'B', 10.5)
     pdf.set_text_color(26, 26, 26)
     bw = pdf.get_string_width('Bachelor of Science in Computer Science')
-    pdf.cell(bw + 4, 11, 'Bachelor of Science in Computer Science')
-    pdf.set_font('Helvetica', '', 8.5)
+    pdf.cell(bw + 4, 14, 'Bachelor of Science in Computer Science')
+    pdf.set_font('Helvetica', '', 9.5)
     pdf.set_text_color(85, 85, 85)
-    pdf.cell(0, 11, 'May 2022', align='R', new_x="LMARGIN", new_y="NEXT")
-    pdf.set_font('Helvetica', '', 8.5)
+    pdf.cell(0, 14, 'May 2022', align='R', new_x="LMARGIN", new_y="NEXT")
+    pdf.set_font('Helvetica', '', 9.5)
     pdf.set_text_color(68, 68, 68)
-    pdf.cell(0, 10, 'University of Wisconsin - Parkside', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 12, 'University of Wisconsin - Parkside', new_x="LMARGIN", new_y="NEXT")
 
-    y_final = pdf.get_y()
-    page_h = 792
-    print(f'Final Y: {y_final:.0f} / {page_h} ({"FITS" if y_final < page_h - 30 else "OVERFLOW"})')
-
+    print(f'Pages: {pdf.page_no()}')
     pdf.output('/Users/joshualaviolette/Downloads/JOSHUA_LAVIOLETTE_resume.pdf')
     print('PDF generated: ~/Downloads/JOSHUA_LAVIOLETTE_resume.pdf')
 
