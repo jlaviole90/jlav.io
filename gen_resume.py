@@ -80,7 +80,8 @@ def build():
     # Contact
     pdf.set_font('Helvetica', '', 9)
     pdf.set_text_color(85, 85, 85)
-    pdf.cell(0, 12, '(262) 995-4394  |  jlaviole90@gmail.com  |  linkedin.com/in/joshualaviolette  |  jlav.io', new_x="LMARGIN", new_y="NEXT")
+    pdf.set_font('Helvetica', '', 8)
+    pdf.cell(0, 12, '4707 Wilson Road, Kenosha, WI 53142 | (262) 995-4394 | jlaviole90@gmail.com | linkedin.com/in/joshualaviolette | jlav.io', new_x="LMARGIN", new_y="NEXT")
 
     pdf.ln(6)
 
@@ -100,8 +101,8 @@ def build():
 
     # Skills
     pdf.section_divider('Skills')
-    pdf.skill_row(['Java / Spring Boot', 'Angular / TypeScript', 'Python / Go / Rust'])
-    pdf.skill_row(['REST API Design', 'PostgreSQL / Oracle / NoSQL', 'AWS / Azure Cloud'])
+    pdf.skill_row(['Java / Spring Boot / .NET', 'Angular / TypeScript', 'Python / Go / Rust'])
+    pdf.skill_row(['REST API Design', 'PostgreSQL / Oracle / NoSQL', 'AWS / Azure Cloud / GCP'])
     pdf.skill_row(['AI / ML / LLM Training', 'AI-Assisted Development', 'Kafka / Async Messaging'])
     pdf.skill_row(['CI/CD / Docker', 'Third-Party Integrations', 'Agile / Scrum'])
     pdf.ln(4)
@@ -116,7 +117,9 @@ def build():
     pdf.bullet(
         'Architected and built a greenfield prescription eligibility checking engine using '
         'Spring Boot and PostgreSQL, replacing a set of critical nodes within a 200+ '
-        'decision/action workflow engine embedded in a 30-year-old Java/Swing monolith.'
+        'decision/action workflow engine embedded in a 30-year-old Java/Swing monolith, '
+        'streamlining prescription routing for a pharmacy network that serves a substantial '
+        'share of locations across the country.'
     )
     pdf.bullet(
         'Worked directly with the customer-facing product team to translate business '
@@ -125,9 +128,9 @@ def build():
         'and delivery timelines.'
     )
     pdf.bullet(
-        'Designed APIs for primary and secondary eligibility that consolidated multiple legacy '
-        'data sources, reducing network overhead and improving data visibility for technicians '
-        'and customers with first-ever eligibility history views.'
+        'Designed APIs that consolidated multiple legacy data sources, reducing network '
+        'overhead and improving data visibility for technicians and customers with '
+        'first-ever eligibility history views.'
     )
     pdf.bullet(
         'Built a resilient integration layer between the new microservice and the legacy system '
@@ -201,53 +204,41 @@ def build():
         'for the City of Menasha, Wisconsin.'
     )
 
+    pdf.job_header('Freelance Web Developer', '2020 - Present')
+    pdf.company_line('634 Properties (634properties.com)')
+    pdf.bullet(
+        'Developed and maintained the company website through multiple full redesigns, '
+        'evolving the platform alongside changing business needs and branding.'
+    )
+    pdf.bullet(
+        'Integrated third-party APIs for property listings, enabling automated and '
+        'up-to-date inventory display for prospective buyers and renters.'
+    )
+    pdf.bullet(
+        'Planned and executed digital advertising campaigns that drove a 10x increase '
+        'in web viewership.'
+    )
+
     pdf.ln(4)
 
     # Personal Projects
     pdf.section_divider('Personal Projects')
 
-    pdf.project_header('Discord Server Analytics Bot', 'Go')
     pdf.bullet(
-        'Built a Discord bot in Go that collects and analyzes server activity, providing '
-        'users with detailed insights including post counts, message history, channel '
-        'popularity rankings, and per-user engagement statistics.'
+        'Built multiple Discord bots in Go for server analytics and AI, including a '
+        'data collection bot that provides engagement insights and feeds cleaned '
+        'conversation data into a local LLM training pipeline, and a chatbot powered '
+        'by the resulting fine-tuned model.'
     )
     pdf.bullet(
-        'Designed a data cleaning and formatting pipeline that transforms raw Discord '
-        'conversation data into structured training datasets suitable for LLM fine-tuning.'
+        'Built a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion '
+        'on a Raspberry Pi with Nginx, exposed via Tailscale Funnel, with '
+        'passphrase-protected access through a Vercel serverless function.'
     )
     pdf.bullet(
-        'Feeds processed data into a local network training pipeline on Raspberry Pi '
-        'hardware, handling the full lifecycle from collection through model deployment.'
-    )
-
-    pdf.project_header('Discord LLM Chatbot', 'Go / Python')
-    pdf.bullet(
-        'Deployed a conversational AI chatbot to Discord, powered by a locally trained '
-        'LLM fine-tuned on real user conversation data collected by the analytics bot.'
-    )
-    pdf.bullet(
-        'Built the end-to-end pipeline connecting data collection, model training, and '
-        'live inference across multiple services on a local network.'
-    )
-
-    pdf.project_header('Bird Feeder Live Stream', 'Nginx / HLS / Vercel')
-    pdf.bullet(
-        'Built a live bird feeder camera stream on jlav.io using a Birdify camera '
-        'streaming RTMP to a Raspberry Pi running Nginx for HLS conversion, exposed '
-        'publicly via Tailscale Funnel.'
-    )
-    pdf.bullet(
-        'Implemented passphrase-protected access through a Vercel serverless function '
-        'that validates credentials server-side before returning the stream URL, '
-        'with browser playback handled by hls.js.'
-    )
-
-    pdf.project_header('jlav.io - Personal Portfolio', 'Angular / Vercel')
-    pdf.bullet(
-        'Designed and built a personal portfolio site featuring scroll-driven grid '
-        'animations, a terminal-themed typewriter dashboard, dynamic GitHub project '
-        'listings via serverless API, and a full interactive resume page.'
+        'Designed and built jlav.io as an interactive Angular 19 portfolio featuring '
+        'scroll-driven animations, a terminal-themed dashboard, dynamic GitHub project '
+        'listings via serverless API, and a full web-based resume.'
     )
 
     pdf.ln(4)
