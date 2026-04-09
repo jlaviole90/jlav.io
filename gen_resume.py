@@ -14,7 +14,7 @@ class ResumePDF(FPDF):
     def section_divider(self, title):
         self.set_font("Helvetica", "B", 9)
         self.set_text_color(17, 17, 17)
-        self.cell(0, 13, title.upper(), new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 14, title.upper(), new_x="LMARGIN", new_y="NEXT")
         self.set_draw_color(170, 170, 170)
         self.line(
             self.l_margin,
@@ -42,20 +42,20 @@ class ResumePDF(FPDF):
     def role_description(self, text):
         self.set_font("Helvetica", "I", 8.5)
         self.set_text_color(51, 51, 51)
-        self.multi_cell(0, 10.5, text, new_x="LMARGIN", new_y="NEXT")
+        self.multi_cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
 
     def client_label(self, text):
-        self.set_font("Helvetica", "B", 8.5)
-        self.set_text_color(34, 34, 34)
-        self.cell(0, 11, text, new_x="LMARGIN", new_y="NEXT")
+        self.set_font("Helvetica", "BI", 8)
+        self.set_text_color(51, 51, 51)
+        self.cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
 
     def bullet(self, text):
         self.set_font("Helvetica", "", 8.5)
         self.set_text_color(51, 51, 51)
         x = self.get_x()
-        self.cell(8, 4, "-")
+        self.cell(8, 12, "-")
         self.set_x(x + 8)
-        self.multi_cell(0, 10.5, text, new_x="LMARGIN", new_y="NEXT")
+        self.multi_cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
 
     def skill_row(self, items):
         col_w = (self.w - self.l_margin - self.r_margin) / len(items)
@@ -64,8 +64,8 @@ class ResumePDF(FPDF):
         y = self.get_y()
         for i, item in enumerate(items):
             self.set_xy(self.l_margin + i * col_w, y)
-            self.cell(col_w, 10.5, item)
-        self.set_y(y + 10.5)
+            self.cell(col_w, 12, item)
+        self.set_y(y + 12)
 
 
 def build():
@@ -101,13 +101,13 @@ def build():
     pdf.set_text_color(51, 51, 51)
     pdf.multi_cell(
         0,
-        10.5,
+        12,
         (
-            "Senior software engineer who thrives on autonomy and moves fast. Turns ambiguous "
+            "Senior software engineer who thrives on autonomy and moves fast. Turning ambiguous "
             "business requirements into production-ready systems, operating end-to-end from "
-            "architecture through deployment. Combines strong technical judgment with creativity "
-            "and relentless ownership - whether leading teams, shipping as a sole contributor, "
-            "or navigating unfamiliar domains. Consistently delivers high-impact results across "
+            "architecture through deployment. Combining strong technical judgment with creativity "
+            "and relentless ownership, whether leading teams, shipping as a sole contributor, "
+            "or navigating unfamiliar domains. Consistently delivering high-impact results across "
             "concurrent engagements."
         ),
         new_x="LMARGIN",
@@ -150,23 +150,22 @@ def build():
     # Experience
     pdf.section_divider("Experience")
 
-    pdf.job_header("Senior Software Engineer", "Zeal IT Consultants", "Apr 2024 - Present")
+    pdf.job_header(
+        "Senior Software Engineer", "Zeal IT Consultants", "Apr 2024 - Present"
+    )
     pdf.role_description(
-        "Embedded consultant leading architecture and delivery across concurrent client "
-        "engagements. Driving Chicago market expansion for the Dallas-based firm through "
-        "a series of recurring executive leadership events focused on AI in the SDLC."
+        "Embedded consultant leading architecture, technical delivery, and mentorship across "
+        "concurrent client engagements. Enabling Chicago market expansion for the "
+        "Dallas-based firm through a series of AI focused executive leadership events "
+        "and networking opprotunities."
     )
 
-    pdf.client_label("Zeal Client: McKesson (Jan 2025 - Present)")
-    pdf.bullet(
-        "Architected a greenfield prescription eligibility engine replacing critical nodes "
-        "within a 200+ step workflow embedded in a 30-year-old Java/Swing monolith, "
-        "streamlining routing for 1M+ daily prescriptions across 4,500+ pharmacy locations."
-    )
-    pdf.bullet(
-        "Partnered with the customer-facing product team to translate business requirements "
-        "into technical specifications, aligning priorities, compliance expectations, "
-        "and delivery timelines between product and engineering."
+    pdf.client_label("Client: McKesson (Jan 2025 - Apr 2026)")
+    pdf.role_description(
+        "Architected a greenfield eligibility engine processing 1M+ daily prescriptions "
+        "across 4,500+ pharmacy locations, replacing critical nodes in a 30-year-old "
+        "monolith. Tech lead on the modernization team for a 20,000+ user platform. "
+        "Java 8/17, Angular."
     )
     pdf.bullet(
         "Consolidated multiple legacy data sources into unified APIs, reducing network "
@@ -174,20 +173,21 @@ def build():
         "and customers full insight into processing decisions for the first time."
     )
     pdf.bullet(
-        "Established a resilient integration layer between the new microservice and the "
-        "legacy system using circuit breakers, retries, and multi-tenant authentication, "
-        "ensuring backward compatibility while enabling modern capabilities."
+        "Established a resilient integration layer using circuit breakers, retries, and "
+        "multi-tenant authentication, ensuring backward compatibility while enabling "
+        "modern capabilities."
     )
     pdf.bullet(
-        "Spearheaded technical direction as embedded tech lead for a platform serving 20,000+ "
-        "users: mentored junior developers, led architecture discussions, reviewed PRs, "
-        "and coordinated across product, architecture, and data insights teams."
+        "Partnered with the product team to translate business requirements into technical "
+        "specifications, aligning priorities and delivery timelines between product "
+        "and engineering. Delivered on schedule after multiple prior team attempts had stalled."
     )
 
-    pdf.client_label("Zeal Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
-    pdf.bullet(
-        "Drove 2x revenue growth and 3x site traffic as the sole developer on an 18-month "
-        "engagement initially scoped for six months."
+    pdf.client_label("Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
+    pdf.role_description(
+        "Sole developer who redesigned the end-to-end customer experience, driving 2x "
+        "revenue growth and 3x site traffic over an 18-month engagement initially scoped "
+        "for six months. Angular, Go, .NET, Node.js, Azure Functions."
     )
     pdf.bullet(
         "Delivered customer-facing checkout systems for dental discount plans across "
@@ -195,55 +195,53 @@ def build():
         "pricing models, and payment flows end-to-end."
     )
     pdf.bullet(
-        "Orchestrated a broad set of third-party integrations and custom design to support "
-        "multi-brand checkout, affiliate tracking, and provider search across consumer, "
-        "wholesale, and Spanish-language sites."
-    )
-    pdf.bullet(
         "Engineered a domain resolution service redirecting 80+ legacy affiliate subdomains "
         "to the modernized platform with preserved attribution codes, maintaining the "
         "integrity of the affiliate ecosystem against expectations."
     )
     pdf.bullet(
-        "Leveraged AI-assisted development tools early to accelerate delivery, streamline "
-        "code review, and rapidly onboard into unfamiliar codebases and third-party ecosystems."
+        "Orchestrated third-party integrations supporting multi-brand checkout, affiliate "
+        "tracking, and provider search across consumer, wholesale, and Spanish-language sites."
     )
 
     pdf.job_header("Software Developer - Supply Chain", "Uline", "Jun 2022 - Apr 2024")
-    pdf.bullet(
-        "Led a team of five in decomposing a monolithic service into two microservices "
-        "and a standalone application, improving operational visibility and legislative "
-        "compliance across 5 distribution centers and 25+ warehouses."
+    pdf.role_description(
+        "Led a team of five in modernizing a monolithic supply chain service into "
+        "microservices, improving visibility and compliance across 5 distribution "
+        "centers and 25+ warehouses. Java, Angular."
     )
     pdf.bullet(
         "Implemented an integration framework between Manhattan WMS and the modernized "
-        "microservices architecture, enabling real-time warehouse data flow for domestic "
-        "and international transfers."
+        "architecture, enabling real-time warehouse data flow for domestic and "
+        "international transfers."
     )
     pdf.bullet(
         "Eliminated duplicate transaction processing by implementing idempotent purchase "
         "order tracking across distributed systems."
     )
 
-    pdf.job_header("Software Engineering Intern", "UW-Parkside App Factory", "Sep 2021 - May 2022")
-    pdf.bullet(
-        "Created a public-facing kiosk application displaying real-time solar panel "
-        "performance data for the City of Menasha, Wisconsin."
+    pdf.job_header(
+        "Software Engineering Intern", "UW-Parkside App Factory", "Sep 2021 - May 2022"
+    )
+    pdf.role_description(
+        "Built a public-facing kiosk application displaying real-time solar panel "
+        "performance data for the City of Menasha, Wisconsin. Java, React."
     )
 
-    pdf.job_header("Freelance Web Developer", "634 Properties (634properties.com)", "2020 - Present")
-    pdf.bullet(
-        "Redesigned and maintained the web platform through multiple iterations for a "
-        "property company spanning 6 locations across 4 states, growing monthly visitors "
-        "from under 100 to over 10,000 at peak."
+    pdf.job_header(
+        "Freelance Web Developer",
+        "634 Properties (634properties.com)",
+        "2020 - Present",
+    )
+    pdf.role_description(
+        "Full ownership of web presence for a property company spanning 6 locations "
+        "across 4 states. Grew monthly visitors from under 100 to over 10,000 at peak "
+        "through multiple redesigns and targeted digital advertising campaigns. "
+        "Go, Next.js, Node.js, React, Angular."
     )
     pdf.bullet(
         "Integrated third-party APIs for automated property listings, enabling real-time "
         "inventory display for prospective buyers and renters."
-    )
-    pdf.bullet(
-        "Planned and executed digital advertising campaigns contributing to a sustained "
-        "10x increase in web viewership."
     )
 
     pdf.ln(2)
@@ -271,9 +269,17 @@ def build():
 
     # Education
     pdf.section_divider("Education")
-    pdf.job_header("B.S. Computer Science", "University of Wisconsin - Parkside", "Jun 2019 - May 2022")
+    pdf.job_header(
+        "B.S. Computer Science",
+        "University of Wisconsin - Parkside",
+        "Jun 2019 - May 2022",
+    )
 
-    pdf.job_header("Dual Enrollment, IT Fundamentals & Networking", "Lakeview Technology Academy", "Graduated 2017")
+    pdf.job_header(
+        "Dual Enrollment, IT Fundamentals & Networking",
+        "Lakeview Technology Academy",
+        "Graduated 2017",
+    )
 
     y_final = pdf.get_y()
     page_h = 792
