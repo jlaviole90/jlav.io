@@ -39,6 +39,11 @@ class ResumePDF(FPDF):
         self.set_text_color(85, 85, 85)
         self.cell(0, 12, date, align="R", new_x="LMARGIN", new_y="NEXT")
 
+    def role_description(self, text):
+        self.set_font("Helvetica", "I", 8.5)
+        self.set_text_color(51, 51, 51)
+        self.multi_cell(0, 10.5, text, new_x="LMARGIN", new_y="NEXT")
+
     def client_label(self, text):
         self.set_font("Helvetica", "B", 8.5)
         self.set_text_color(34, 34, 34)
@@ -83,7 +88,7 @@ def build():
     pdf.cell(
         0,
         9,
-        "4707 Wilson Road, Kenosha, WI 53142 | (262) 995-4394 | jlaviole90@gmail.com | linkedin.com/in/joshualaviolette | jlav.io",
+        "(262) 995-4394 | jlaviole90@gmail.com | linkedin.com/in/joshualaviolette | jlav.io",
         new_x="LMARGIN",
         new_y="NEXT",
     )
@@ -146,13 +151,13 @@ def build():
     pdf.section_divider("Experience")
 
     pdf.job_header("Senior Software Engineer", "Zeal IT Consultants", "Apr 2024 - Present")
-    pdf.bullet(
-        "Supporting Chicago market expansion for the Dallas-based firm, growing local brand "
-        "presence through professional networking and co-organizing a private executive event "
-        "featuring a panel on AI in the software development lifecycle."
+    pdf.role_description(
+        "Embedded consultant leading architecture and delivery across concurrent client "
+        "engagements. Driving Chicago market expansion for the Dallas-based firm through "
+        "a series of recurring executive leadership events focused on AI in the SDLC."
     )
 
-    pdf.client_label("Client: McKesson (Jan 2025 - Present)")
+    pdf.client_label("Zeal Client: McKesson (Jan 2025 - Present)")
     pdf.bullet(
         "Architected a greenfield prescription eligibility engine replacing critical nodes "
         "within a 200+ step workflow embedded in a 30-year-old Java/Swing monolith, "
@@ -179,7 +184,7 @@ def build():
         "and coordinated across product, architecture, and data insights teams."
     )
 
-    pdf.client_label("Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
+    pdf.client_label("Zeal Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
     pdf.bullet(
         "Drove 2x revenue growth and 3x site traffic as the sole developer on an 18-month "
         "engagement initially scoped for six months."
