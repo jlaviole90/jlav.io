@@ -98,12 +98,12 @@ def build():
         0,
         10.5,
         (
-            "Full-stack software engineer specializing in enterprise integrations, API design, "
-            "and modernizing legacy systems. Experienced across the full development lifecycle "
-            "from architecture through deployment, with a track record of translating complex "
-            "business requirements into scalable, maintainable solutions. Actively leverages AI "
-            "tooling to accelerate development workflows, improve code quality, and multiply "
-            "individual output across concurrent engagements."
+            "Senior software engineer who thrives on autonomy and moves fast. Turns ambiguous "
+            "business requirements into production-ready systems, operating end-to-end from "
+            "architecture through deployment. Combines strong technical judgment with creativity "
+            "and relentless ownership - whether leading teams, shipping as a sole contributor, "
+            "or navigating unfamiliar domains. Consistently delivers high-impact results across "
+            "concurrent engagements."
         ),
         new_x="LMARGIN",
         new_y="NEXT",
@@ -147,104 +147,98 @@ def build():
 
     pdf.job_header("Senior Software Engineer", "Zeal IT Consultants", "Apr 2024 - Present")
     pdf.bullet(
-        "Supporting Chicago market expansion for the Dallas-based firm, building local brand "
+        "Supporting Chicago market expansion for the Dallas-based firm, growing local brand "
         "presence through professional networking and co-organizing a private executive event "
         "featuring a panel on AI in the software development lifecycle."
     )
 
     pdf.client_label("Client: McKesson (Jan 2025 - Present)")
     pdf.bullet(
-        "Architected and built a greenfield prescription eligibility checking engine, "
-        "replacing a set of critical nodes within a 200+ decision/action workflow "
-        "engine embedded in a 30-year-old Java/Swing monolith, streamlining "
-        "prescription routing for a pharmacy network that serves a substantial "
-        "share of locations across the country."
+        "Architected a greenfield prescription eligibility engine replacing critical nodes "
+        "within a 200+ step workflow embedded in a 30-year-old Java/Swing monolith, "
+        "streamlining routing for 1M+ daily prescriptions across 4,500+ pharmacy locations."
     )
     pdf.bullet(
-        "Worked directly with the customer-facing product team to translate business "
-        "requirements into technical specifications, bridging the gap between product vision "
-        "and the development team to ensure alignment on priorities, compliance expectations, "
-        "and delivery timelines."
+        "Partnered with the customer-facing product team to translate business requirements "
+        "into technical specifications, aligning priorities, compliance expectations, "
+        "and delivery timelines between product and engineering."
     )
     pdf.bullet(
-        "Designed APIs that consolidated multiple legacy data sources, reducing network "
-        "overhead and creating data visibility for technicians and customers with "
-        "first-ever detailed eligibility history views."
+        "Consolidated multiple legacy data sources into unified APIs, reducing network "
+        "overhead and providing end-to-end transaction visibility that gave technicians "
+        "and customers full insight into processing decisions for the first time."
     )
     pdf.bullet(
-        "Built a resilient integration layer between the new microservice and the legacy system "
-        "using circuit breakers, retries, and multi-tenant authentication, ensuring backward "
-        "compatibility while enabling modern capabilities."
+        "Established a resilient integration layer between the new microservice and the "
+        "legacy system using circuit breakers, retries, and multi-tenant authentication, "
+        "ensuring backward compatibility while enabling modern capabilities."
     )
     pdf.bullet(
-        "Served as tech lead: mentored entry-level developers, led architecture discussions, "
-        "reviewed PRs, and coordinated across product, architecture, and data insights teams "
-        "as a consultant embedded in the business."
+        "Spearheaded technical direction as embedded tech lead for a platform serving 20,000+ "
+        "users: mentored junior developers, led architecture discussions, reviewed PRs, "
+        "and coordinated across product, architecture, and data insights teams."
     )
 
     pdf.client_label("Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
     pdf.bullet(
-        "Increased brand revenue and site traffic by 2x and 3x, respectively. "
-        "Retained by the client for 18 months due to volume and quality of delivered work, "
-        "despite being initially scoped for a 6-month engagement."
+        "Drove 2x revenue growth and 3x site traffic as the sole developer on an 18-month "
+        "engagement initially scoped for six months."
     )
     pdf.bullet(
-        "Sole developer on the engagement: independently designed, built, and deployed "
-        "customer-facing checkout systems for dental discount plans (1dental.com, "
-        "careington1.com, and compliance sites), handling multiple providers, pricing "
-        "models, and payment flows."
+        "Delivered customer-facing checkout systems for dental discount plans across "
+        "1dental.com, careington1.com, and compliance sites, handling multiple providers, "
+        "pricing models, and payment flows end-to-end."
     )
     pdf.bullet(
-        "Integrated a broad set of third-party services and custom design to support "
+        "Orchestrated a broad set of third-party integrations and custom design to support "
         "multi-brand checkout, affiliate tracking, and provider search across consumer, "
-        "wholesale, and Spanish-language sites - owning every feature end-to-end from "
-        "requirements through production deployment."
+        "wholesale, and Spanish-language sites."
     )
     pdf.bullet(
-        "Engineered a domain resolution service that redirected 80+ "
-        "legacy affiliate subdomains to the modernized platform with preserved affiliate "
-        "attribution codes, preserving the integrity of the affiliate ecosystem despite "
-        "expectations it would be lost."
+        "Engineered a domain resolution service redirecting 80+ legacy affiliate subdomains "
+        "to the modernized platform with preserved attribution codes, maintaining the "
+        "integrity of the affiliate ecosystem against expectations."
     )
     pdf.bullet(
-        "Adopted AI-assisted development tools early to accelerate feature delivery, "
-        "streamline code review, and rapidly onboard into unfamiliar codebases and "
-        "third-party ecosystems."
+        "Leveraged AI-assisted development tools early to accelerate delivery, streamline "
+        "code review, and rapidly onboard into unfamiliar codebases and third-party ecosystems."
     )
 
     pdf.job_header("Software Developer - Supply Chain", "Uline", "Jun 2022 - Apr 2024")
     pdf.bullet(
-        "Led a team of five in refactoring a monolithic service into microservices, enabling "
-        "operations teams to maintain visibility and legislative compliance for domestic and "
-        "international transfers."
+        "Led a team of five in decomposing a monolithic service into two microservices "
+        "and a standalone application, improving operational visibility and legislative "
+        "compliance across 5 distribution centers and 25+ warehouses."
     )
     pdf.bullet(
-        "Built an integration framework between Manhattan WMS and a modernized microservices "
-        "architecture for warehouse management."
+        "Implemented an integration framework between Manhattan WMS and the modernized "
+        "microservices architecture, enabling real-time warehouse data flow for domestic "
+        "and international transfers."
     )
     pdf.bullet(
-        "Implemented idempotent purchase order transaction tracking to prevent duplicate "
-        "updates across distributed systems."
+        "Eliminated duplicate transaction processing by implementing idempotent purchase "
+        "order tracking across distributed systems."
     )
 
     pdf.job_header("Software Engineering Intern", "UW-Parkside App Factory", "Sep 2021 - May 2022")
     pdf.bullet(
-        "Developed a public-facing kiosk application displaying real-time solar panel data "
-        "for the City of Menasha, Wisconsin."
+        "Created a public-facing kiosk application displaying real-time solar panel "
+        "performance data for the City of Menasha, Wisconsin."
     )
 
     pdf.job_header("Freelance Web Developer", "634 Properties (634properties.com)", "2020 - Present")
     pdf.bullet(
-        "Developed and maintained the company website through multiple full redesigns, "
-        "evolving the platform alongside changing business needs and branding."
+        "Redesigned and maintained the web platform through multiple iterations for a "
+        "property company spanning 6 locations across 4 states, growing monthly visitors "
+        "from under 100 to over 10,000 at peak."
     )
     pdf.bullet(
-        "Integrated third-party APIs for property listings, enabling automated and "
-        "up-to-date inventory display for prospective buyers and renters."
+        "Integrated third-party APIs for automated property listings, enabling real-time "
+        "inventory display for prospective buyers and renters."
     )
     pdf.bullet(
-        "Planned and executed digital advertising campaigns that drove a 10x increase "
-        "in web viewership."
+        "Planned and executed digital advertising campaigns contributing to a sustained "
+        "10x increase in web viewership."
     )
 
     pdf.ln(2)
@@ -253,20 +247,19 @@ def build():
     pdf.section_divider("Personal Projects")
 
     pdf.bullet(
-        "Built multiple Discord bots in Go for server analytics and AI, including a "
-        "data collection bot that provides engagement insights and feeds cleaned "
-        "conversation data into a local LLM training pipeline, and a chatbot powered "
-        "by the resulting fine-tuned model."
+        "Created Discord bots in Go serving hundreds of users across multiple servers, "
+        "including a data collection bot that processed hundreds of thousands of messages "
+        "to feed a local LLM training pipeline and a chatbot powered by the resulting model."
     )
     pdf.bullet(
-        "Built a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion "
-        "on a Raspberry Pi with Nginx, exposed via Tailscale Funnel, with "
-        "passphrase-protected access through a Vercel serverless function."
+        "Deployed a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion "
+        "on a Raspberry Pi with Nginx, exposed via Tailscale Funnel with passphrase-protected "
+        "access through a Vercel serverless function."
     )
     pdf.bullet(
-        "Designed and built jlav.io as an interactive Angular 19 portfolio featuring "
-        "scroll-driven animations, a terminal-themed dashboard, dynamic GitHub project "
-        "listings via serverless API, and a full web-based resume."
+        "Designed jlav.io as an interactive Angular 19 portfolio featuring scroll-driven "
+        "animations, a terminal-themed dashboard, dynamic GitHub project listings via "
+        "serverless API, and a full web-based resume."
     )
 
     pdf.ln(2)
