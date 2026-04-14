@@ -64,6 +64,11 @@ export class BirdcamComponent implements OnDestroy {
             this.hls = new Hls({
                 liveDurationInfinity: true,
                 enableWorker: true,
+                maxBufferLength: 30,
+                maxMaxBufferLength: 60,
+                liveSyncDurationCount: 3,
+                liveMaxLatencyDurationCount: 6,
+                liveBackBufferLength: 0,
             });
 
             this.hls.loadSource(this.streamUrl);
