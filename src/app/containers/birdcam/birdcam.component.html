@@ -20,31 +20,31 @@
     </div>
 } @else {
     <div id="birdcam-container">
-        <div id="player-wrapper">
-            <video #videoPlayer muted autoplay playsinline [controls]="!!activeClip"></video>
-            <div id="status-bar">
-                @if (activeClip) {
-                    <button id="back-to-live" (click)="backToLive()">← Back to Live</button>
-                    <span id="clip-label">{{ getSpeciesName(activeClip) }} · {{ activeClip.detected_at | date:'short' }}</span>
-                } @else {
-                    <span id="live-badge" [class.active]="isLive">LIVE</span>
+        <div id="birdcam-layout">
+            <div id="player-wrapper">
+                <video #videoPlayer muted autoplay playsinline [controls]="!!activeClip"></video>
+                <div id="status-bar">
+                    @if (activeClip) {
+                        <button id="back-to-live" (click)="backToLive()">← Back to Live</button>
+                        <span id="clip-label">{{ getSpeciesName(activeClip) }} · {{ activeClip.detected_at | date:'short' }}</span>
+                    } @else {
+                        <span id="live-badge" [class.active]="isLive">LIVE</span>
+                    }
+                </div>
+                @if (error && !activeClip) {
+                    <div id="overlay">
+                        <p>{{ error }}</p>
+                    </div>
                 }
             </div>
-            @if (error && !activeClip) {
-                <div id="overlay">
-                    <p>{{ error }}</p>
-                </div>
-            }
-        </div>
 
-        @if (apiUrl) {
-            <div id="sightings-panel">
-                <button id="sightings-toggle" (click)="toggleSightings()">
-                    Recent Sightings
-                    <span class="chevron" [class.open]="sightingsOpen">▾</span>
-                </button>
+            @if (apiUrl) {
+                <div id="sightings-panel" [class.open]="sightingsOpen">
+                    <button id="sightings-toggle" (click)="toggleSightings()">
+                        Recent Sightings
+                        <span class="chevron" [class.open]="sightingsOpen">▾</span>
+                    </button>
 
-                @if (sightingsOpen) {
                     <div id="sightings-list">
                         @if (sightingsLoading) {
                             <p class="sightings-status">Loading sightings…</p>
@@ -93,8 +93,8 @@
                             }
                         }
                     </div>
-                }
-            </div>
-        }
+                </div>
+            }
+        </div>
     </div>
 }

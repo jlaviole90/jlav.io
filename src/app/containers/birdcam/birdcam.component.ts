@@ -78,7 +78,10 @@ export class BirdcamComponent implements OnDestroy {
             this.apiUrl = data.apiUrl || '';
             this.authenticated = true;
 
-            setTimeout(() => this.initStream(), 0);
+            setTimeout(() => {
+                this.initStream();
+                if (this.apiUrl) this.fetchSightings();
+            }, 0);
         } catch {
             this.error = 'Could not reach server.';
         } finally {
