@@ -21,15 +21,80 @@
 } @else {
     <div id="birdcam-container">
         <div id="player-wrapper">
-            <video #videoPlayer muted autoplay playsinline></video>
+            <video #videoPlayer muted autoplay playsinline [controls]="!!activeClip"></video>
             <div id="status-bar">
-                <span id="live-badge" [class.active]="isLive">LIVE</span>
+                @if (activeClip) {
+                    <button id="back-to-live" (click)="backToLive()">← Back to Live</button>
+                    <span id="clip-label">{{ getSpeciesName(activeClip) }} · {{ activeClip.detected_at | date:'short' }}</span>
+                } @else {
+                    <span id="live-badge" [class.active]="isLive">LIVE</span>
+                }
             </div>
-            @if (error) {
+            @if (error && !activeClip) {
                 <div id="overlay">
                     <p>{{ error }}</p>
                 </div>
             }
         </div>
+
+        @if (apiUrl) {
+            <div id="sightings-panel">
+                <button id="sightings-toggle" (click)="toggleSightings()">
+                    Recent Sightings
+                    <span class="chevron" [class.open]="sightingsOpen">▾</span>
+                </button>
+
+                @if (sightingsOpen) {
+                    <div id="sightings-list">
+                        @if (sightingsLoading) {
+                            <p class="sightings-status">Loading sightings…</p>
+                        } @else if (sightings.length === 0) {
+                            <p class="sightings-status">No recent sightings.</p>
+                        } @else {
+                            @for (detection of sightings; track detection.id) {
+                                <div
+                                    class="sighting-item"
+                                    [class.active]="activeClip?.id === detection.id"
+                                    [class.playable]="hasVideo(detection)"
+                                    (click)="hasVideo(detection) ? playClip(detection) : null"
+                                >
+                                    <div class="sighting-row">
+                                        <div class="sighting-info">
+                                            <span class="sighting-species">
+                                                {{ getSpeciesName(detection) }}
+                                                @if (detection.extra_metadata?.is_notable) {
+                                                    <span class="notable-badge">rare</span>
+                                                }
+                                                @if (detection.extra_metadata?.was_rerouted) {
+                                                    <span class="rerouted-badge">rerouted</span>
+                                                }
+                                            </span>
+                                            <span class="sighting-time">
+                                                {{ detection.detected_at | date:'MMM d, h:mm:ss a' }}
+                                            </span>
+                                        </div>
+                                        <div class="sighting-right">
+                                            <span class="sighting-confidence">{{ (detection.confidence * 100).toFixed(0) }}%</span>
+                                            @if (hasVideo(detection)) {
+                                                <span class="sighting-video-badge">▶ {{ detection.frame_count }}f</span>
+                                            }
+                                        </div>
+                                    </div>
+                                    @if (detection.extra_metadata?.top5; as top5) {
+                                        @if (top5.length > 1) {
+                                            <div class="sighting-candidates">
+                                                @for (candidate of top5.slice(1, 4); track candidate.species) {
+                                                    <span class="candidate">{{ candidate.species }} {{ (candidate.confidence * 100).toFixed(0) }}%</span>
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        }
     </div>
 }

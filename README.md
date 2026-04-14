@@ -49,6 +49,7 @@ api/                   # Vercel serverless functions
 |---|---|
 | `BIRDCAM_PASSPHRASE` | Passphrase to access the bird feeder stream |
 | `BIRDCAM_STREAM_URL` | HLS `.m3u8` endpoint for the camera |
+| `BIRDCAM_API_URL` | Base URL for the bird detection catalog API (e.g. `https://pi.tailnet.ts.net`) |
 | `GITHUB_TOKEN` | Optional — enables pinned repo fetching and higher rate limits |
 
 ## Development
