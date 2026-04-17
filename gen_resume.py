@@ -135,7 +135,7 @@ def build():
         [
             "REST API Design / Microservices",
             "Event-Driven Architecture / Kafka",
-            "AI Integration / LLM / ML",
+            "AI Integration / PyTorch / ML",
         ]
     )
     pdf.skill_row(
@@ -250,19 +250,21 @@ def build():
     pdf.section_divider("Personal Projects")
 
     pdf.bullet(
+        "Built a multi-modal bird species identification system combining a fine-tuned "
+        "EfficientNet-B4 classifier with YOLOv8 object detection and Bayesian confidence "
+        "adjustment using eBird regional and seasonal statistics. Real-time pipeline "
+        "processes RTSP camera feeds through motion detection, inference, and verification "
+        "on a Raspberry Pi 5. Python, PyTorch, FastAPI, PostgreSQL, TorchServe, Docker."
+    )
+    pdf.bullet(
+        "Designed jlav.io as an interactive Angular 19 portfolio with a live HLS bird "
+        "camera stream, ML-powered sightings browser, scroll-driven animations, terminal-themed "
+        "dashboard, dynamic GitHub project listings via serverless API, and a full web-based resume."
+    )
+    pdf.bullet(
         "Created Discord bots in Go serving hundreds of users across multiple servers, "
         "including a data collection bot that processed hundreds of thousands of messages "
         "to feed a local LLM training pipeline and a chatbot powered by the resulting model."
-    )
-    pdf.bullet(
-        "Deployed a live bird feeder camera stream on jlav.io using RTMP-to-HLS conversion "
-        "on a Raspberry Pi with Nginx, exposed via Tailscale Funnel with passphrase-protected "
-        "access through a Vercel serverless function."
-    )
-    pdf.bullet(
-        "Designed jlav.io as an interactive Angular 19 portfolio featuring scroll-driven "
-        "animations, a terminal-themed dashboard, dynamic GitHub project listings via "
-        "serverless API, and a full web-based resume."
     )
 
     pdf.ln(2)

@@ -1,0 +1,22 @@
+<div id="analytics-page">
+    <nav class="page-nav">
+        <button class="nav-link" (click)="navigate('/projects')">← Projects</button>
+        <button class="nav-link" (click)="navigate('/about')">About →</button>
+    </nav>
+
+    <header class="analytics-header">
+        <h1>Analytics</h1>
+        <p class="subtitle">Live traffic & Core Web Vitals for jlav.io</p>
+    </header>
+
+    <main class="analytics-body" data-wbx>
+        @if (configured) {
+            <wb-dashboard window="7d" />
+        } @else {
+            <div class="not-configured">
+                <p>Analytics dashboard is not configured for this build.</p>
+                <p class="hint">Set <code>WEBALYTICS_HOST</code>, <code>WEBALYTICS_SITE_ID</code>, and <code>WEBALYTICS_PUBLIC_TOKEN</code> to enable.</p>
+            </div>
+        }
+    </main>
+</div>

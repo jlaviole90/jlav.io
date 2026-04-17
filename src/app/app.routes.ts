@@ -5,6 +5,7 @@ import { ProjectsComponent } from './containers/projects/projects.component';
 import { ResumeComponent } from './containers/resume/resume.component';
 import { AboutComponent } from './containers/about/about.component';
 import { BirdcamComponent } from './containers/birdcam/birdcam.component';
+import { AnalyticsComponent } from './containers/analytics/analytics.component';
 
 export const routes: Routes = [
     {
@@ -26,6 +27,10 @@ export const routes: Routes = [
     {
         path: 'birds',
         component: BirdcamComponent,
+    },
+    {
+        path: 'analytics',
+        component: AnalyticsComponent,
     },
     {
         path: '',

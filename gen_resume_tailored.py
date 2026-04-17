@@ -14,7 +14,7 @@ class ResumePDF(FPDF):
     def section_divider(self, title):
         self.set_font("Helvetica", "B", 9)
         self.set_text_color(17, 17, 17)
-        self.cell(0, 14, title.upper(), new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 13, title.upper(), new_x="LMARGIN", new_y="NEXT")
         self.set_draw_color(170, 170, 170)
         self.line(
             self.l_margin,
@@ -27,17 +27,17 @@ class ResumePDF(FPDF):
         self.set_font("Helvetica", "B", 9)
         self.set_text_color(26, 26, 26)
         tw = self.get_string_width(title)
-        self.cell(tw + 2, 12, title)
+        self.cell(tw + 2, 11, title)
         self.set_font("Helvetica", "", 8.5)
         self.set_text_color(68, 68, 68)
         sep_w = self.get_string_width(" | ")
-        self.cell(sep_w, 12, " | ")
+        self.cell(sep_w, 11, " | ")
         self.set_font("Helvetica", "I", 8.5)
         cw = self.get_string_width(company)
-        self.cell(cw + 2, 12, company)
+        self.cell(cw + 2, 11, company)
         self.set_font("Helvetica", "", 8.5)
         self.set_text_color(85, 85, 85)
-        self.cell(0, 12, date, align="R", new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 11, date, align="R", new_x="LMARGIN", new_y="NEXT")
 
     def role_description(self, text):
         self.set_font("Helvetica", "I", 8.5)
@@ -93,7 +93,7 @@ def build():
         new_y="NEXT",
     )
 
-    pdf.ln(3)
+    pdf.ln(2)
 
     # Summary
     pdf.section_divider("Summary")
@@ -103,57 +103,49 @@ def build():
         0,
         11,
         (
-            "Senior software engineer who thrives on autonomy and moves fast. Quick to learn "
-            "new technologies and translate ambiguous business requirements into production-ready "
-            "systems, operating end-to-end from OO design through cloud computing deployment. "
-            "Strong communicator who combines technical judgment with creativity and relentless "
-            "ownership, whether leading teams, shipping as a sole contributor, or navigating "
-            "unfamiliar domains. Consistently delivering high-impact results across concurrent "
-            "engagements."
+            "Senior software engineer who thrives on autonomy and moves fast. Turning ambiguous "
+            "business requirements into production-ready systems, operating end-to-end from "
+            "architecture through deployment. Combining strong technical judgment with creativity "
+            "and relentless ownership, whether leading teams, shipping as a sole contributor, "
+            "or rapidly learning unfamiliar domains. Consistently delivering high-impact results "
+            "across concurrent engagements at enterprise scale."
         ),
         new_x="LMARGIN",
         new_y="NEXT",
     )
-    pdf.ln(2)
+    pdf.ln(1)
 
     # Skills
     pdf.section_divider("Skills")
     pdf.skill_row(
         [
-            "Java / Spring Boot / .NET",
+            "Java / JVM / Spring Boot",
             "Angular / React / Next.js / Node.js",
             "Python / TypeScript / Go / Rust",
         ]
     )
     pdf.skill_row(
         [
-            "PostgreSQL / Oracle / Redis / NoSQL",
+            "PostgreSQL / Redis / NoSQL",
             "AWS / Azure / GCP",
-            "Docker / Kubernetes / Terraform / CI/CD",
+            "Docker / Kubernetes / Terraform",
         ]
     )
     pdf.skill_row(
         [
-            "REST API Design / Microservices",
-            "Event-Driven Architecture / Kafka",
-            "AI Integration / LLM / ML",
+            "GraphQL / REST API / Microservices",
+            "Jenkins / GitHub Actions / Build Systems",
+            "Gradle / Dependency Management",
         ]
     )
     pdf.skill_row(
         [
-            "Large Scale Distributed Systems",
-            "Cloud Computing / OO Design",
-            "Automated Testing / CI/CD Pipelines",
-        ]
-    )
-    pdf.skill_row(
-        [
-            "System Design / Performance Tuning",
-            "Third-Party Integrations / OAuth",
+            "System Design / Developer Productivity",
+            "CI/CD Pipelines / Build Automation",
             "Agile / Technical Leadership",
         ]
     )
-    pdf.ln(2)
+    pdf.ln(1)
 
     # Experience
     pdf.section_divider("Experience")
@@ -163,41 +155,44 @@ def build():
     )
     pdf.role_description(
         "Embedded consultant leading architecture, technical delivery, and mentorship across "
-        "concurrent client engagements. Enabling Chicago market expansion for the "
-        "Dallas-based firm through a series of AI focused executive leadership events "
-        "and networking opprotunities."
+        "concurrent client engagements. Collaborating cross-functionally with product, "
+        "engineering, and leadership teams. Enabling Chicago market expansion for the "
+        "Dallas-based firm through recurring executive leadership events."
     )
 
     pdf.client_label("Client: McKesson (Jan 2025 - Apr 2026)")
     pdf.role_description(
-        "Architected a greenfield eligibility engine for a large scale distributed system "
-        "processing 1M+ daily prescriptions across 4,500+ pharmacy locations, replacing "
-        "critical nodes in a 30-year-old monolith. Tech lead on the modernization team "
-        "for a 20,000+ user platform. Java 8/17, Angular."
+        "Architected a greenfield eligibility engine processing 1M+ daily prescriptions "
+        "across 4,500+ pharmacy locations, replacing critical nodes in a 30-year-old "
+        "monolith. Tech lead on the modernization team for a 20,000+ user platform, "
+        "standing up CI/CD pipelines and microservice architecture. Java 8/17, Gradle, Angular, Jenkins."
     )
     pdf.bullet(
-        "Consolidated multiple legacy data sources into unified APIs, reducing network "
-        "overhead and providing end-to-end transaction visibility that gave technicians "
-        "and customers full insight into processing decisions for the first time."
+        "Consolidated multiple legacy data sources into unified GraphQL and REST APIs, "
+        "reducing network overhead and providing end-to-end transaction visibility that "
+        "gave technicians and customers full insight into processing decisions for the first time."
     )
     pdf.bullet(
-        "Established a resilient integration layer using OO design principles, circuit "
-        "breakers, retries, and multi-tenant authentication, with automated testing to "
-        "ensure backward compatibility while enabling modern capabilities."
+        "Managed Gradle build configurations and dependency resolution across multiple "
+        "repositories, establishing repeatable builds with dependency locking and automated "
+        "integration testing to ensure reliable deployments."
     )
     pdf.bullet(
-        "Communicated directly with the product team to translate business requirements "
-        "into technical specifications, aligning priorities and delivery timelines between "
-        "product and engineering. Delivered on schedule after multiple prior team attempts "
-        "had stalled."
+        "Established a resilient integration layer using circuit breakers, retries, and "
+        "multi-tenant authentication across relational and non-relational data stores, "
+        "ensuring backward compatibility while enabling modern capabilities."
+    )
+    pdf.bullet(
+        "Collaborated cross-functionally with product to translate business requirements into "
+        "technical specifications, aligning priorities and delivery timelines. Delivered on "
+        "schedule after multiple prior team attempts had stalled."
     )
 
     pdf.client_label("Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
     pdf.role_description(
-        "Sole developer who quickly learned new technologies and redesigned the end-to-end "
-        "customer experience, driving 2x revenue growth and 3x site traffic over an "
-        "18-month engagement initially scoped for six months. Angular, Go, .NET, Node.js, "
-        "Azure cloud computing."
+        "Sole developer who redesigned the end-to-end customer experience, driving 2x "
+        "revenue growth and 3x site traffic. Owned the full CI/CD pipeline and deployment "
+        "automation across multiple environments. Angular, Go, .NET, Node.js, Azure Functions."
     )
     pdf.bullet(
         "Delivered customer-facing checkout systems for dental discount plans across "
@@ -209,25 +204,22 @@ def build():
         "to the modernized platform with preserved attribution codes, maintaining the "
         "integrity of the affiliate ecosystem against expectations."
     )
-    pdf.bullet(
-        "Orchestrated third-party integrations supporting multi-brand checkout, affiliate "
-        "tracking, and provider search across consumer, wholesale, and Spanish-language sites."
-    )
 
     pdf.job_header("Software Developer - Supply Chain", "Uline", "Jun 2022 - Apr 2024")
     pdf.role_description(
-        "Led a team of five in modernizing a monolithic supply chain service into a "
-        "large scale distributed system of microservices, improving visibility and "
-        "compliance across 5 distribution centers and 25+ warehouses. Java, Angular."
+        "Led a team of five in modernizing a monolithic supply chain service into "
+        "microservices, establishing CI/CD pipelines and automated build processes "
+        "across the new architecture. Improved visibility and compliance across 5 "
+        "distribution centers and 25+ warehouses. Java, Angular, Jenkins."
     )
     pdf.bullet(
         "Implemented an integration framework between Manhattan WMS and the modernized "
-        "architecture, enabling real-time warehouse data flow for domestic and "
-        "international transfers."
+        "microservice architecture, managing cross-repository dependency updates to enable "
+        "real-time warehouse data flow for domestic and international transfers."
     )
     pdf.bullet(
         "Eliminated duplicate transaction processing by implementing idempotent purchase "
-        "order tracking with automated testing across distributed systems."
+        "order tracking across distributed systems with relational and non-relational stores."
     )
 
     pdf.job_header(
@@ -246,36 +238,34 @@ def build():
     pdf.role_description(
         "Full ownership of web presence for a property company spanning 6 locations "
         "across 4 states. Grew monthly visitors from under 100 to over 10,000 at peak "
-        "through multiple redesigns and targeted digital advertising campaigns. "
+        "through multiple redesigns and targeted digital campaigns. "
         "Go, Next.js, Node.js, React, Angular."
     )
-    pdf.bullet(
-        "Integrated third-party APIs for automated property listings, enabling real-time "
-        "inventory display for prospective buyers and renters."
-    )
 
-    pdf.ln(2)
+    pdf.ln(1)
 
     # Personal Projects
     pdf.section_divider("Personal Projects")
 
     pdf.bullet(
+        "Built a multi-modal bird species identification system combining a fine-tuned "
+        "EfficientNet-B4 classifier with YOLOv8 object detection and Bayesian confidence "
+        "adjustment using eBird regional statistics. Real-time pipeline with CI/CD-driven "
+        "container deployments on a Raspberry Pi 5. Python, PyTorch, FastAPI, PostgreSQL, "
+        "TorchServe, Docker."
+    )
+    pdf.bullet(
+        "Designed jlav.io as an interactive Angular 19 portfolio with automated CI/CD "
+        "deployments via Vercel, a live HLS bird camera stream, ML-powered sightings "
+        "browser, and dynamic GitHub project listings via serverless API."
+    )
+    pdf.bullet(
         "Created Discord bots in Go serving hundreds of users across multiple servers, "
         "including a data collection bot that processed hundreds of thousands of messages "
         "to feed a local LLM training pipeline and a chatbot powered by the resulting model."
     )
-    pdf.bullet(
-        "Built a live media encoding pipeline for a bird feeder camera stream on jlav.io: "
-        "RTMP ingest to HLS transcoding on a Raspberry Pi with Nginx, cloud delivery via "
-        "Tailscale Funnel, and passphrase-protected access through a Vercel serverless function."
-    )
-    pdf.bullet(
-        "Designed jlav.io as an interactive Angular 19 portfolio featuring scroll-driven "
-        "animations, a terminal-themed dashboard, dynamic GitHub project listings via "
-        "serverless API, and a full web-based resume."
-    )
 
-    pdf.ln(2)
+    pdf.ln(1)
 
     # Education
     pdf.section_divider("Education")
