@@ -6,9 +6,9 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const { passphrase } = req.body ?? {};
-    const expected = process.env.BIRDCAM_PASSPHRASE;
-    const streamUrl = process.env.BIRDCAM_STREAM_URL;
-    const apiUrl = process.env.BIRDCAM_API_URL;
+    const expected = process.env['BIRDCAM_PASSPHRASE'];
+    const streamUrl = process.env['BIRDCAM_STREAM_URL'];
+    const apiUrl = process.env['BIRDCAM_API_URL'];
 
     if (!expected || !streamUrl) {
         return res.status(500).json({ error: 'Not configured' });

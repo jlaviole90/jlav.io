@@ -28,8 +28,8 @@ async function ghFetch(path: string, accept?: string): Promise<Response> {
         Accept: accept ?? 'application/vnd.github+json',
         'User-Agent': 'jlav-io-site',
     };
-    const token = process.env.GITHUB_TOKEN;
-    if (token) headers.Authorization = `Bearer ${token}`;
+    const token = process.env['GITHUB_TOKEN'];
+    if (token) headers['Authorization'] = `Bearer ${token}`;
     return fetch(`${GITHUB_API}${path}`, { headers });
 }
 
@@ -47,7 +47,7 @@ async function fetchReadme(owner: string, repo: string): Promise<string | null> 
 }
 
 async function fetchPinnedRepos(): Promise<ProjectInfo[] | null> {
-    const token = process.env.GITHUB_TOKEN;
+    const token = process.env['GITHUB_TOKEN'];
     if (!token) return null;
 
     const query = `{

@@ -10,10 +10,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const host = process.env.WEBALYTICS_HOST || '';
-    const siteId = process.env.WEBALYTICS_SITE_ID || '';
-    const publicSiteId = process.env.WEBALYTICS_PUBLIC_SITE_ID || '';
-    const publicToken = process.env.WEBALYTICS_PUBLIC_TOKEN || '';
+    const host = process.env['WEBALYTICS_HOST'] || '';
+    const siteId = process.env['WEBALYTICS_SITE_ID'] || '';
+    const publicSiteId = process.env['WEBALYTICS_PUBLIC_SITE_ID'] || '';
+    const publicToken = process.env['WEBALYTICS_PUBLIC_TOKEN'] || '';
 
     res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300');
     return res.status(200).json({ host, siteId, publicSiteId, publicToken });
