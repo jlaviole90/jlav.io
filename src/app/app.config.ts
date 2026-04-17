@@ -10,22 +10,13 @@ import { provideWebalyticsDashboard } from '@jlaviole90/dashboard-angular';
 
 export interface WebalyticsRuntimeConfig {
     host: string;
-    // Internal site UUID — used by the dashboard's authenticated read APIs.
     siteId: string;
-    // Public `wb_live_*` id — safe to embed, used by the tracker/ingest.
-    publicSiteId: string;
-    // Origin-bound, read-only `wb_pub_live_*` token — used by the dashboard.
     publicToken: string;
 }
 
-const EMPTY_WEBALYTICS: WebalyticsRuntimeConfig = {
-    host: '',
-    siteId: '',
-    publicSiteId: '',
-    publicToken: '',
-};
-
-export function buildAppConfig(webalytics: WebalyticsRuntimeConfig | null): ApplicationConfig {
+export function buildAppConfig(
+    webalytics: WebalyticsRuntimeConfig | null,
+): ApplicationConfig {
     const baseProviders = [
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(routes),
@@ -34,12 +25,14 @@ export function buildAppConfig(webalytics: WebalyticsRuntimeConfig | null): Appl
         TypewriterService,
     ];
 
-    const { host, siteId, publicSiteId, publicToken } = webalytics ?? EMPTY_WEBALYTICS;
+    const { host, siteId, publicToken } = webalytics ?? {
+        host: '',
+        siteId: '',
+        publicToken: '',
+    };
 
     const webalyticsProviders =
-        host && publicSiteId
-            ? [provideWebalytics({ host, siteId: publicSiteId })]
-            : [];
+        host && siteId ? [provideWebalytics({ host, siteId })] : [];
 
     const webalyticsDashboardProviders =
         host && siteId && publicToken

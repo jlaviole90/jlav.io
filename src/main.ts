@@ -10,14 +10,15 @@ async function loadWebalyticsConfig(): Promise<WebalyticsRuntimeConfig | null> {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 2000);
     try {
-        const res = await fetch('/api/webalytics-config', { signal: controller.signal });
+        const res = await fetch('/api/webalytics-config', {
+            signal: controller.signal,
+        });
         if (!res.ok) return null;
         const data = (await res.json()) as Partial<WebalyticsRuntimeConfig>;
         if (!data.host) return null;
         return {
             host: data.host,
             siteId: data.siteId ?? '',
-            publicSiteId: data.publicSiteId ?? '',
             publicToken: data.publicToken ?? '',
         };
     } catch {
@@ -28,7 +29,7 @@ async function loadWebalyticsConfig(): Promise<WebalyticsRuntimeConfig | null> {
 }
 
 loadWebalyticsConfig().then((webalytics) =>
-    bootstrapApplication(AppComponent, buildAppConfig(webalytics)).catch((err) =>
-        console.error(err),
+    bootstrapApplication(AppComponent, buildAppConfig(webalytics)).catch(
+        (err) => console.error(err),
     ),
 );
