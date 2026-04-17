@@ -3,8 +3,43 @@
 const fs = require('fs');
 const path = require('path');
 
-const envDir = path.resolve(__dirname, '..', 'src', 'environments');
+const projectRoot = path.resolve(__dirname, '..');
+const envDir = path.resolve(projectRoot, 'src', 'environments');
 const envFile = path.join(envDir, 'environment.ts');
+
+// Load .env.local then .env (both optional). Existing process.env values win,
+// so Vercel-injected production env vars are never overridden.
+// .env.local is populated by `vercel env pull` and is what local dev relies on.
+function loadDotenv(filePath) {
+    if (!fs.existsSync(filePath)) return 0;
+    const raw = fs.readFileSync(filePath, 'utf8');
+    let loaded = 0;
+    for (const line of raw.split(/\r?\n/)) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) continue;
+        const eq = trimmed.indexOf('=');
+        if (eq === -1) continue;
+        const key = trimmed.slice(0, eq).trim();
+        let value = trimmed.slice(eq + 1).trim();
+        if (
+            (value.startsWith('"') && value.endsWith('"')) ||
+            (value.startsWith("'") && value.endsWith("'"))
+        ) {
+            value = value.slice(1, -1);
+        }
+        if (!(key in process.env)) {
+            process.env[key] = value;
+            loaded++;
+        }
+    }
+    return loaded;
+}
+
+const loadedLocal = loadDotenv(path.join(projectRoot, '.env.local'));
+const loadedBase = loadDotenv(path.join(projectRoot, '.env'));
+if (loadedLocal || loadedBase) {
+    console.log(`[generate-env] Loaded ${loadedLocal} var(s) from .env.local, ${loadedBase} from .env`);
+}
 
 const webalyticsSiteId = process.env.WEBALYTICS_SITE_ID || '';
 const webalyticsHost = process.env.WEBALYTICS_HOST || '';
