@@ -50,7 +50,16 @@ api/                   # Vercel serverless functions
 | `BIRDCAM_PASSPHRASE` | Passphrase to access the bird feeder stream |
 | `BIRDCAM_STREAM_URL` | HLS `.m3u8` endpoint for the camera |
 | `BIRDCAM_API_URL` | Base URL for the bird detection catalog API (e.g. `https://pi.tailnet.ts.net`) |
+| `WEBALYTICS_HOST` | Webalytics API host used by the tracker and `/analytics` dashboard |
+| `WEBALYTICS_PUBLIC_SITE_ID` | Public, embed-safe site id (`wb_live_*`) — used by the tracker |
+| `WEBALYTICS_SITE_ID` | Internal site UUID — used by the dashboard's read APIs |
+| `WEBALYTICS_PUBLIC_TOKEN` | Origin-bound, read-only embed token (`wb_pub_live_*`) for the dashboard |
 | `GITHUB_TOKEN` | Optional — enables pinned repo fetching and higher rate limits |
+
+Webalytics config is served to the SPA at runtime by `/api/webalytics-config` and
+fetched in `src/main.ts` before bootstrap, so no tokens or IDs end up in source
+or in the compiled bundle. Set the three `WEBALYTICS_*` vars in Vercel Project
+Settings → Environment Variables and redeploy.
 
 ## Development
 
