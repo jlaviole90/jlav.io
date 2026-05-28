@@ -93,7 +93,7 @@ def build():
         new_y="NEXT",
     )
 
-    pdf.ln(2)
+    pdf.ln(1)
 
     # Summary
     pdf.section_divider("Summary")
@@ -107,8 +107,8 @@ def build():
             "business requirements into production-ready systems, operating end-to-end from "
             "architecture through deployment. Combining strong technical judgment with creativity "
             "and relentless ownership, whether leading teams, shipping as a sole contributor, "
-            "or rapidly learning unfamiliar domains. Consistently delivering high-impact results "
-            "across concurrent engagements at enterprise scale."
+            "or navigating unfamiliar domains. Consistently delivering high-impact results across "
+            "concurrent engagements."
         ),
         new_x="LMARGIN",
         new_y="NEXT",
@@ -119,29 +119,29 @@ def build():
     pdf.section_divider("Skills")
     pdf.skill_row(
         [
-            "Java / JVM / Spring Boot",
+            "Java / Spring Boot / .NET",
             "Angular / React / Next.js / Node.js",
             "Python / TypeScript / Go / Rust",
         ]
     )
     pdf.skill_row(
         [
-            "PostgreSQL / Redis / NoSQL",
+            "PostgreSQL / Oracle / Redis / NoSQL",
             "AWS / Azure / GCP",
-            "Docker / Kubernetes / Terraform",
+            "Docker / Kubernetes / Terraform / CI/CD",
         ]
     )
     pdf.skill_row(
         [
-            "GraphQL / REST API / Microservices",
-            "Jenkins / GitHub Actions / Build Systems",
-            "Gradle / Dependency Management",
+            "REST / GraphQL API Design",
+            "Event-Driven Architecture / Kafka",
+            "Data Modeling / System Design",
         ]
     )
     pdf.skill_row(
         [
-            "System Design / Developer Productivity",
-            "CI/CD Pipelines / Build Automation",
+            "Distributed Data Processing",
+            "Third-Party Integrations / OAuth",
             "Agile / Technical Leadership",
         ]
     )
@@ -155,71 +155,69 @@ def build():
     )
     pdf.role_description(
         "Embedded consultant leading architecture, technical delivery, and mentorship across "
-        "concurrent client engagements. Collaborating cross-functionally with product, "
-        "engineering, and leadership teams. Enabling Chicago market expansion for the "
-        "Dallas-based firm through recurring executive leadership events."
+        "concurrent client engagements. Enabling Chicago market expansion for the "
+        "Dallas-based firm through a series of AI focused executive leadership events "
+        "and networking opprotunities."
     )
 
     pdf.client_label("Client: McKesson (Jan 2025 - Apr 2026)")
     pdf.role_description(
         "Architected a greenfield eligibility engine processing 1M+ daily prescriptions "
         "across 4,500+ pharmacy locations, replacing critical nodes in a 30-year-old "
-        "monolith. Tech lead on the modernization team for a 20,000+ user platform, "
-        "standing up CI/CD pipelines and microservice architecture. Java 8/17, Gradle, Angular, Jenkins."
+        "monolith. Tech lead on the modernization team for a 20,000+ user platform. "
+        "Java 8/17, Spring Boot, Angular."
     )
     pdf.bullet(
-        "Consolidated multiple legacy data sources into unified GraphQL and REST APIs, "
-        "reducing network overhead and providing end-to-end transaction visibility that "
-        "gave technicians and customers full insight into processing decisions for the first time."
-    )
-    pdf.bullet(
-        "Managed Gradle build configurations and dependency resolution across multiple "
-        "repositories, establishing repeatable builds with dependency locking and automated "
-        "integration testing to ensure reliable deployments."
+        "Designed data models for prescription eligibility and transaction history, "
+        "consolidating multiple legacy data sources into unified RESTful APIs that "
+        "gave technicians and customers full insight into processing decisions."
     )
     pdf.bullet(
         "Established a resilient integration layer using circuit breakers, retries, and "
-        "multi-tenant authentication across relational and non-relational data stores, "
-        "ensuring backward compatibility while enabling modern capabilities."
+        "multi-tenant authentication, ensuring backward compatibility while enabling "
+        "modern capabilities across upstream and downstream systems."
     )
     pdf.bullet(
-        "Collaborated cross-functionally with product to translate business requirements into "
-        "technical specifications, aligning priorities and delivery timelines. Delivered on "
-        "schedule after multiple prior team attempts had stalled."
+        "Partnered with the product team to translate business requirements into technical "
+        "specifications, aligning priorities and delivery timelines between product "
+        "and engineering. Delivered on schedule after multiple prior team attempts had stalled."
     )
 
     pdf.client_label("Client: Qualbe Marketing Group (Apr 2024 - Oct 2025)")
     pdf.role_description(
         "Sole developer who redesigned the end-to-end customer experience, driving 2x "
-        "revenue growth and 3x site traffic. Owned the full CI/CD pipeline and deployment "
-        "automation across multiple environments. Angular, Go, .NET, Node.js, Azure Functions."
+        "revenue growth and 3x site traffic over an 18-month engagement initially scoped "
+        "for six months. Angular, Go, .NET, Node.js, Azure Functions."
     )
     pdf.bullet(
-        "Delivered customer-facing checkout systems for dental discount plans across "
-        "1dental.com, careington1.com, and compliance sites, handling multiple providers, "
-        "pricing models, and payment flows end-to-end."
+        "Delivered customer-facing checkout and payment processing systems for dental "
+        "discount plans across 1dental.com, careington1.com, and compliance sites, handling "
+        "multiple providers, pricing models, and financial transaction flows end-to-end."
     )
     pdf.bullet(
         "Engineered a domain resolution service redirecting 80+ legacy affiliate subdomains "
         "to the modernized platform with preserved attribution codes, maintaining the "
         "integrity of the affiliate ecosystem against expectations."
     )
+    pdf.bullet(
+        "Orchestrated third-party integrations supporting multi-brand checkout, affiliate "
+        "tracking, and provider search across consumer, wholesale, and Spanish-language sites."
+    )
 
     pdf.job_header("Software Developer - Supply Chain", "Uline", "Jun 2022 - Apr 2024")
     pdf.role_description(
         "Led a team of five in modernizing a monolithic supply chain service into "
-        "microservices, establishing CI/CD pipelines and automated build processes "
-        "across the new architecture. Improved visibility and compliance across 5 "
-        "distribution centers and 25+ warehouses. Java, Angular, Jenkins."
+        "microservices, improving visibility and compliance across 5 distribution "
+        "centers and 25+ warehouses. Java, Spring Boot, Angular."
     )
     pdf.bullet(
         "Implemented an integration framework between Manhattan WMS and the modernized "
-        "microservice architecture, managing cross-repository dependency updates to enable "
-        "real-time warehouse data flow for domestic and international transfers."
+        "architecture, enabling real-time warehouse data flow for domestic and "
+        "international transfers."
     )
     pdf.bullet(
         "Eliminated duplicate transaction processing by implementing idempotent purchase "
-        "order tracking across distributed systems with relational and non-relational stores."
+        "order tracking across distributed systems."
     )
 
     pdf.job_header(
@@ -238,8 +236,12 @@ def build():
     pdf.role_description(
         "Full ownership of web presence for a property company spanning 6 locations "
         "across 4 states. Grew monthly visitors from under 100 to over 10,000 at peak "
-        "through multiple redesigns and targeted digital campaigns. "
+        "through multiple redesigns and targeted digital advertising campaigns. "
         "Go, Next.js, Node.js, React, Angular."
+    )
+    pdf.bullet(
+        "Integrated third-party APIs for automated property listings, enabling real-time "
+        "inventory display for prospective buyers and renters."
     )
 
     pdf.ln(1)
@@ -248,21 +250,24 @@ def build():
     pdf.section_divider("Personal Projects")
 
     pdf.bullet(
+        "Built Webalytics, a multi-tenant web analytics platform with sub-second query "
+        "performance across multiple client sites. Go API with ClickHouse for columnar "
+        "event storage, PostgreSQL with row-level security for tenant isolation, and Redis "
+        "for real-time aggregation. Published open-source NPM packages for React, Next.js, "
+        "and Angular. Docker, Terraform, AWS."
+    )
+    pdf.bullet(
         "Built a multi-modal bird species identification system combining a fine-tuned "
         "EfficientNet-B4 classifier with YOLOv8 object detection and Bayesian confidence "
-        "adjustment using eBird regional statistics. Real-time pipeline with CI/CD-driven "
-        "container deployments on a Raspberry Pi 5. Python, PyTorch, FastAPI, PostgreSQL, "
-        "TorchServe, Docker."
+        "adjustment using eBird regional and seasonal statistics. Real-time pipeline "
+        "processes RTSP camera feeds through motion detection, inference, and verification "
+        "on a Raspberry Pi 5. Python, PyTorch, FastAPI, PostgreSQL, TorchServe, Docker."
     )
     pdf.bullet(
-        "Designed jlav.io as an interactive Angular 19 portfolio with automated CI/CD "
-        "deployments via Vercel, a live HLS bird camera stream, ML-powered sightings "
-        "browser, and dynamic GitHub project listings via serverless API."
-    )
-    pdf.bullet(
-        "Created Discord bots in Go serving hundreds of users across multiple servers, "
-        "including a data collection bot that processed hundreds of thousands of messages "
-        "to feed a local LLM training pipeline and a chatbot powered by the resulting model."
+        "Built a distributed data pipeline across three machines for LLM training: "
+        "collection bots in Go ingested hundreds of thousands of Discord messages, a "
+        "dedicated server processed and fine-tuned models, and a separate node deployed "
+        "the resulting chatbot serving hundreds of users."
     )
 
     pdf.ln(1)

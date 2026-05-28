@@ -14,7 +14,7 @@ class ResumePDF(FPDF):
     def section_divider(self, title):
         self.set_font("Helvetica", "B", 9)
         self.set_text_color(17, 17, 17)
-        self.cell(0, 14, title.upper(), new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 13, title.upper(), new_x="LMARGIN", new_y="NEXT")
         self.set_draw_color(170, 170, 170)
         self.line(
             self.l_margin,
@@ -27,35 +27,50 @@ class ResumePDF(FPDF):
         self.set_font("Helvetica", "B", 9)
         self.set_text_color(26, 26, 26)
         tw = self.get_string_width(title)
-        self.cell(tw + 2, 12, title)
+        self.cell(tw + 2, 11, title)
         self.set_font("Helvetica", "", 8.5)
         self.set_text_color(68, 68, 68)
         sep_w = self.get_string_width(" | ")
-        self.cell(sep_w, 12, " | ")
+        self.cell(sep_w, 11, " | ")
         self.set_font("Helvetica", "I", 8.5)
         cw = self.get_string_width(company)
-        self.cell(cw + 2, 12, company)
+        self.cell(cw + 2, 11, company)
         self.set_font("Helvetica", "", 8.5)
         self.set_text_color(85, 85, 85)
-        self.cell(0, 12, date, align="R", new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 11, date, align="R", new_x="LMARGIN", new_y="NEXT")
 
     def role_description(self, text):
         self.set_font("Helvetica", "I", 8.5)
         self.set_text_color(51, 51, 51)
-        self.multi_cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
+        self.multi_cell(0, 11, text, new_x="LMARGIN", new_y="NEXT")
 
     def client_label(self, text):
         self.set_font("Helvetica", "BI", 8)
         self.set_text_color(51, 51, 51)
-        self.cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
+        self.cell(0, 11, text, new_x="LMARGIN", new_y="NEXT")
 
     def bullet(self, text):
         self.set_font("Helvetica", "", 8.5)
         self.set_text_color(51, 51, 51)
         x = self.get_x()
-        self.cell(8, 12, "-")
+        self.cell(8, 11, "-")
         self.set_x(x + 8)
-        self.multi_cell(0, 12, text, new_x="LMARGIN", new_y="NEXT")
+        self.multi_cell(0, 11, text, new_x="LMARGIN", new_y="NEXT")
+
+    def project_bullet(self, name, text):
+        self.set_text_color(51, 51, 51)
+        x = self.get_x()
+        self.set_font("Helvetica", "", 8.5)
+        self.cell(8, 11, "-")
+        self.set_x(x + 8)
+        saved_margin = self.l_margin
+        self.l_margin = x + 8
+        self.set_font("Helvetica", "B", 8.5)
+        self.write(11, f"{name} -- ")
+        self.set_font("Helvetica", "", 8.5)
+        self.write(11, text)
+        self.l_margin = saved_margin
+        self.ln(11)
 
     def skill_row(self, items):
         col_w = (self.w - self.l_margin - self.r_margin) / len(items)
@@ -64,8 +79,8 @@ class ResumePDF(FPDF):
         y = self.get_y()
         for i, item in enumerate(items):
             self.set_xy(self.l_margin + i * col_w, y)
-            self.cell(col_w, 12, item)
-        self.set_y(y + 12)
+            self.cell(col_w, 11, item)
+        self.set_y(y + 11)
 
 
 def build():
@@ -93,7 +108,7 @@ def build():
         new_y="NEXT",
     )
 
-    pdf.ln(3)
+    pdf.ln(5)
 
     # Summary
     pdf.section_divider("Summary")
@@ -101,51 +116,50 @@ def build():
     pdf.set_text_color(51, 51, 51)
     pdf.multi_cell(
         0,
-        12,
+        11,
         (
-            "Senior software engineer who thrives on autonomy and moves fast. Turning ambiguous "
-            "business requirements into production-ready systems, operating end-to-end from "
-            "architecture through deployment. Combining strong technical judgment with creativity "
-            "and relentless ownership, whether leading teams, shipping as a sole contributor, "
-            "or navigating unfamiliar domains. Consistently delivering high-impact results across "
-            "concurrent engagements."
+            "Senior software engineer building at the intersection of supply chain, "
+            "healthcare, and agentic AI. Thrives on autonomy and moves fast -- turning "
+            "ambiguous requirements into production-ready systems end-to-end. Combines strong "
+            "technical judgment with creativity and relentless ownership, whether leading "
+            "teams, shipping as a sole contributor, or architecting multi-phase LLM pipelines."
         ),
         new_x="LMARGIN",
         new_y="NEXT",
     )
-    pdf.ln(2)
+    pdf.ln(5)
 
     # Skills
     pdf.section_divider("Skills")
     pdf.skill_row(
         [
             "Java / Spring Boot / .NET",
-            "Angular / React / Next.js / Node.js",
+            "Agentic AI / LLM Tool-Use / RAG / Embeddings",
+            "System Design / Performance Tuning",
+        ]
+    )
+    pdf.skill_row(
+        [
             "Python / TypeScript / Go / Rust",
+            "AWS / Azure / GCP",
+            "Agile / Technical Leadership",
+        ]
+    )
+    pdf.skill_row(
+        [
+            "Angular / React / Next.js / Node.js",
+            "REST API Design / Microservices",
+            "Third-Party Integrations / OAuth",
         ]
     )
     pdf.skill_row(
         [
             "PostgreSQL / Oracle / Redis / NoSQL",
-            "AWS / Azure / GCP",
             "Docker / Kubernetes / Terraform / CI/CD",
-        ]
-    )
-    pdf.skill_row(
-        [
-            "REST API Design / Microservices",
             "Event-Driven Architecture / Kafka",
-            "AI Integration / PyTorch / ML",
         ]
     )
-    pdf.skill_row(
-        [
-            "System Design / Performance Tuning",
-            "Third-Party Integrations / OAuth",
-            "Agile / Technical Leadership",
-        ]
-    )
-    pdf.ln(2)
+    pdf.ln(5)
 
     # Experience
     pdf.section_divider("Experience")
@@ -156,8 +170,8 @@ def build():
     pdf.role_description(
         "Embedded consultant leading architecture, technical delivery, and mentorship across "
         "concurrent client engagements. Enabling Chicago market expansion for the "
-        "Dallas-based firm through a series of AI focused executive leadership events "
-        "and networking opprotunities."
+        "Dallas-based firm through a series of AI-focused executive leadership events "
+        "and networking opportunities."
     )
 
     pdf.client_label("Client: McKesson (Jan 2025 - Apr 2026)")
@@ -244,30 +258,35 @@ def build():
         "inventory display for prospective buyers and renters."
     )
 
-    pdf.ln(2)
+    pdf.ln(5)
 
     # Personal Projects
     pdf.section_divider("Personal Projects")
 
-    pdf.bullet(
-        "Built a multi-modal bird species identification system combining a fine-tuned "
-        "EfficientNet-B4 classifier with YOLOv8 object detection and Bayesian confidence "
-        "adjustment using eBird regional and seasonal statistics. Real-time pipeline "
-        "processes RTSP camera feeds through motion detection, inference, and verification "
-        "on a Raspberry Pi 5. Python, PyTorch, FastAPI, PostgreSQL, TorchServe, Docker."
+    pdf.project_bullet(
+        "Spellweaver",
+        "Agentic system that autonomously constructs optimized MTG decks from a user's "
+        "card collection. Multi-phase AI pipeline combining vector similarity search for "
+        "synergy discovery, LLM-driven strategy planning, and a multi-turn Claude tool-use "
+        "loop for iterative card selection -- all constrained to owned cards and format "
+        "legality. Python, Anthropic Claude, Voyage AI, Qdrant, Redis, FastAPI, Docker.",
     )
-    pdf.bullet(
-        "Designed jlav.io as an interactive Angular 19 portfolio with a live HLS bird "
-        "camera stream, ML-powered sightings browser, scroll-driven animations, terminal-themed "
-        "dashboard, dynamic GitHub project listings via serverless API, and a full web-based resume."
+    pdf.project_bullet(
+        "Backyard Birder",
+        "Real-time bird species identification pipeline processing live camera feeds "
+        "through motion detection, object detection, and a fine-tuned image classifier "
+        "with regional and seasonal confidence adjustment. Runs autonomously on a "
+        "Raspberry Pi 5. Python, PyTorch, FastAPI, PostgreSQL, Docker.",
     )
-    pdf.bullet(
-        "Created Discord bots in Go serving hundreds of users across multiple servers, "
-        "including a data collection bot that processed hundreds of thousands of messages "
-        "to feed a local LLM training pipeline and a chatbot powered by the resulting model."
+    pdf.project_bullet(
+        "Webalytics",
+        "Multi-tenant web analytics platform with sub-second query performance. Go API "
+        "with ClickHouse for columnar event storage, PostgreSQL with row-level security, "
+        "and Redis for real-time aggregation. Published open-source NPM packages. "
+        "Docker, Terraform, AWS.",
     )
 
-    pdf.ln(2)
+    pdf.ln(5)
 
     # Education
     pdf.section_divider("Education")
@@ -277,10 +296,14 @@ def build():
         "Jun 2019 - May 2022",
     )
 
+    pdf.ln(5)
+
+    # Certifications
+    pdf.section_divider("Certifications")
     pdf.job_header(
-        "Dual Enrollment, IT Fundamentals & Networking",
-        "Lakeview Technology Academy",
-        "Graduated 2017",
+        "Certified Claude Architect - Foundations (CCA-F)",
+        "Anthropic",
+        "May 2026",
     )
 
     y_final = pdf.get_y()

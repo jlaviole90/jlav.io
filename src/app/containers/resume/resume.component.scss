@@ -100,6 +100,8 @@ section {
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
     gap: 4px 0;
 
     span {
